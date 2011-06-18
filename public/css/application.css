@@ -11,10 +11,15 @@ body {
 }
 
 #lyric { display: block; width: 100%; margin: 0 auto; padding: 50px 0 60px 0; font: normal 60px/80px Arial; color: #3B3B3B; text-align: center; background: url('../images/notes.png') 0 bottom repeat-x; }
-#lyric .current { color: #50A2B3; border-bottom: 10px solid #50A2B3; }
-#lyric .current.top { padding: 0 0 4px 0; }
-#lyric .current.medium { padding: 0 0 24px 0; }
-#lyric .current.low { padding: 0 0 44px 0; }
+#lyric .word { color: #2F2E2E; border-bottom: 5px solid #2F2E2E; }
+#lyric .word.top { padding: 0 0 7px 0; }
+#lyric .word.medium { padding: 0 0 27px 0; }
+#lyric .word.low { padding: 0 0 47px 0; }
+
+#lyric .word.current { color: #50A2B3; border-bottom: 10px solid #50A2B3; }
+#lyric .word.current.top { padding: 0 0 4px 0; }
+#lyric .word.current.medium { padding: 0 0 24px 0; }
+#lyric .word.current.low { padding: 0 0 44px 0; }
 
 body .x-fullscreen { background-color: ; }
 

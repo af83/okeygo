@@ -6,16 +6,38 @@ Ext.setup({
     glossOnIcon: false,
     onReady: function(){
 
+      // Sample player
       var player = $("#player")[0];
-
       $("#play").bind('click', function(event) {
-        console.log( $("#url").val() );
-
         event.preventDefault();
-        $( player ).attr('src', $("#url").val());
+        player.attr('src', $("#url").val());
         player.play();
       });
 
+      var panel = new Ext.Panel({
+        fullscreen: true,
+
+        dockedItems: [
+            {
+                dock : 'top',
+                xtype: 'toolbar',
+                title: 'af83 tunes'
+            },
+            {
+                dock : 'top',
+                xtype: 'toolbar',
+                ui   : 'light',
+                items: [
+                    {
+                        text: 'Youpi!',
+                        handler: function() { player.play(); }
+                    }
+                ]
+            }
+        ],
+
+        html: 'Basic interface'
+      });
     }
 });
 

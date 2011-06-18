@@ -21,8 +21,9 @@ body {
 #lyric .word.current.medium { padding: 0 0 24px 0; }
 #lyric .word.current.low { padding: 0 0 44px 0; }
 
-body .x-fullscreen { background-color: #E3E3E3; }
-body.song .x-fullscreen { background: #E3E3E3 url('../images/sings.png') right bottom no-repeat; }
+body { background: #E3E3E3 url('../images/logo.png') center bottom no-repeat; }
+body .x-fullscreen { background: transparent; }
+body.song .x-fullscreen { background: transparent url('../images/sings.png') right bottom no-repeat; }
 
 
 #counter { display: block; width: 1000px; margin: 0 auto; font: normal 500px Arial; color: #0095AC; text-align: center; }
@@ -32,7 +33,7 @@ body.song .x-fullscreen { background: #E3E3E3 url('../images/sings.png') right b
 #song h2 .artist { font: normal 20px Arial; color: #2F2E2E; }
 #song h2 .title { font: bold 20px Arial; color: #50A2B3; }
 
-#progressbar { margin: -10px 0px 0px -10px; width: 100%; height: 10px; }
+#progressbar { margin: -10px 0px 0px 0; width: 100%; height: 10px; }
 
 /* 
   grey #2F2E2E 
@@ -46,10 +47,12 @@ body.song .x-fullscreen { background: #E3E3E3 url('../images/sings.png') right b
 .meter > span:after, .animate > span > span { content: ""; position: absolute; top: 0; left: 0; bottom: 0; right: 0; background-image: -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.25, rgba(255, 255, 255, .2)), color-stop(.25, transparent), color-stop(.5, transparent), color-stop(.5, rgba(255, 255, 255, .2)), color-stop(.75, rgba(255, 255, 255, .2)), color-stop(.75, transparent), to(transparent)); z-index: 1; -webkit-background-size: 50px 50px; -webkit-animation: move 2s linear infinite; -webkit-border-top-right-radius: 8px; -webkit-border-bottom-right-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; -webkit-border-top-left-radius: 20px; -webkit-border-bottom-left-radius: 20px; border-top-left-radius: 20px; border-bottom-left-radius: 20px; overflow: hidden; }
 
 .animate > span:after { display: none; }
+/*
 @-webkit-keyframes move { 
   0% { background-position: 0 0; }
   50% { background-position: 25px 25px; }
   100% { background-position: 50px 50px; }
 }
+*/
 
 .nostripes > span > span, .nostripes > span:after { -webkit-animation: none; background-image: none; }

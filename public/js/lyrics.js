@@ -1,15 +1,15 @@
 Lyrics = function(url) {
-  this.url = url;
+  this.url      = url;
   this.init();
 };
 
 Lyrics.prototype.init = function() {
+  this.intval   = null;
   this.timeouts = [];
   this.lyrics   = [];
   this.note_min = -1;
   this.note_max = -1;
   this.duration = -1;
-  this.intval   = null;
 };
 
 Lyrics.counter = 0;
@@ -109,6 +109,7 @@ Lyrics.prototype.choose = function(id, duration) {
 };
 
 Lyrics.prototype.stop = function() {
+  $("#lyric").html('');
   this.timeouts.forEach(clearTimeout);
   this.timeouts = [];
   if (this.intval) {

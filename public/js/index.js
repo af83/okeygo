@@ -92,13 +92,23 @@ Ext.setup({
                 handler: function(button) {
                   songPanel.backToHomePanel();
                 }
+              },
+              { ui: 'forward',
+                text: 'Replay',
+                handler: function(button) {
+                  songPanel.backToCountDownPanel();
+                }
               }
             ]
-          },
+          }
         ],
         backToHomePanel: function() {
           songPanel.hide();
           homePanel.show();
+        },
+        backToCountDownPanel: function() {
+          songPanel.hide();
+          countDownPanel.show();
         },
       });
       songPanel.hide();

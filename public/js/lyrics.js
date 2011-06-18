@@ -50,6 +50,7 @@ Lyrics.display = function(song) {
 Lyrics.counter = 0;
 
 Lyrics.timer = function(lyrics, timing) {
+    var self = this;
     if (lyrics.length && timing != lyrics[0][0].start) return ;
     $("#lyric").html('');
     var sentence = lyrics.shift();
@@ -57,7 +58,8 @@ Lyrics.timer = function(lyrics, timing) {
         if (word.text) {
             var id = 'word-' + Lyrics.counter++;
             $('#lyric').append('<span id="' + id + '">' + word.text + '</span>');
-            $('#lyric').addClass('word');
+            $('#' + id).addClass('word');
+            $('#' + id).addClass(self.midinote(word.note));
             if (word.start == timing) {
                 Lyrics.choose(id, word);
             } else {
@@ -67,6 +69,44 @@ Lyrics.timer = function(lyrics, timing) {
             }
         }
     });
+};
+
+/*
+* Return the CSS class 'low', 'medium' and 'high'
+* @params {Integer} begin
+* @params {Integer} end
+* @return {Object} Object of Array
+*/
+Lyrics.range = function(begin, end) {
+    var range = {low: [], medium: [], high: []};
+    var low = [];
+    var medium = [];
+    var high = [];
+    for (var i = begin; i <= end; i++) {
+        if (i < (end / 3))
+            low.push(i);
+        else if (i < (end / 3) * 2)
+            medium.push(i);
+        else
+            high.push(i);
+    }
+    range.low = low;
+    range.medium = medium;
+    range.high = high;
+    return range;
+};
+
+/*
+* Return the CSS class 'low', 'medium' and 'high'
+* @params {Integer} note
+* @return {String} the CSS class
+*/
+Lyrics.midinote = function(note) {
+    var midirange = this.range(0, 127);
+    for (var i in midirange) {
+        if (midirange[i].indexOf(parseInt(note, 10)) >= 0)
+            return i;
+    }
 };
 
 Lyrics.choose = function(id, word) {

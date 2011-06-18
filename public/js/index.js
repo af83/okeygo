@@ -108,10 +108,19 @@ Ext.setup({
             xtype: 'toolbar',
             title: 'Sing !',
             items: [
-              { ui: 'back', text: 'Back to list' }
+              { ui: 'back',
+                text: 'Back to list',
+                handler: function(button) {
+                  songPanel.backToHomePanel();
+                }
+              }
             ]
           },
-        ]
+        ],
+        backToHomePanel: function() {
+          songPanel.hide();
+          homePanel.show();
+        },
       });
       songPanel.hide();
       songPanel.on('show', function(panel) {
@@ -119,10 +128,11 @@ Ext.setup({
         $('body').addClass('song');
         var url = 'songs/Celine_Dion_-_My_Heart_Will_Go_On.txt';
         Lyrics.load(url, function(song) {
-            Lyrics.display(song);
+          Lyrics.display(song);
         });
       });
       songPanel.on('hide', function(panel) {
+        // Lyrics.stop();
         $('body').removeClass('song');
       });
 

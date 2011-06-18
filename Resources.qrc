@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>public/index.html</file>
+        <file>public/css/sencha-touch.css</file>
+        <file>public/js/index.js</file>
+        <file>public/js/sencha-touch.js</file>
+    </qresource>
+</RCC>

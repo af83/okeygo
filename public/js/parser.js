@@ -7,20 +7,22 @@ Lyrics.load = function(url, callback) {
         var sentence = [];
         var lines = resp.split('\r\n');
         lines.forEach(function(line) {
+            var row = [];
+            var words = {};
             if (line[0] == '#') {
-                var row = line.slice(1).split(':');
+                row = line.slice(1).split(':');
                 song[row[0]] = row[1];
             } else if (line[0] == ':') {
-                var row = line.slice(2).split(' ');
-                var word = {
+                row = line.slice(2).split(' ');
+                word = {
                     start:    row[0],
                     duration: row[1],
                     note:     row[2],
                     text:     row.slice(3).join(" ")
-                }
+                };
                 sentence.push(word);
             } else if (line[0] == '-') {
-                var word = { sleep: line.slice(2) };
+                word = { sleep: line.slice(2) };
                 sentence.push(word);
                 song.lyrics.push(sentence);
                 sentence = [];
@@ -59,7 +61,7 @@ Lyrics.timer = function(lyrics, timing) {
             } else {
                 setTimeout(function() {
                     Lyrics.choose(id, word);
-                }, (word.start - timing) * 100)
+                }, (word.start - timing) * 100);
             }
         }
     });

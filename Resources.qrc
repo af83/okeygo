@@ -5,5 +5,9 @@
         <file>public/js/index.js</file>
         <file>public/js/sencha-touch.js</file>
         <file>public/media/sample.mp3</file>
+        <file>public/css/application.css</file>
+        <file>public/js/lyrics.js</file>
+        <file>public/songs/Celine_Dion_-_My_Heart_Will_Go_On.txt</file>
+        <file>public/js/zepto.min.js</file>
     </qresource>
 </RCC>

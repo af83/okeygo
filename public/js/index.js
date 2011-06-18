@@ -101,7 +101,9 @@ Ext.setup({
         fullscreen: true,
         showAnimation: { type: 'slide', direction: 'left' },
         html: '<div id="lyric"></div>\
-        <div id="song"><h2><span class="artist"></span> - <span class="title"></span></h2><meter id="progressbar" value="0" max="100">Low</meter></div>',
+        <div id="song"><h2><span class="artist"></span> - <span class="title"></span></h2>\
+        <div class="meter animate"><span id="progressbar" style="width: 50%"><span></span></span></div>\
+        </div>',
         dockedItems: [
           {
             dock : 'top',

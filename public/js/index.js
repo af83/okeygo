@@ -6,41 +6,12 @@ Ext.setup({
     glossOnIcon: false,
     onReady: function(){
 
-      // Sample player
-      var player = $("#player");
-
-      // Build a sortable song list
-      Ext.regModel('Songs', { fields: ['artist', 'name'] });
-      var store = new Ext.data.JsonStore({
-        model  : 'Songs',
-        sorters: 'artist',
-        getGroupString : function(record) {
-          return record.get('artist')[0];
-        },
-        data: [
-          {artist: "Zed Shaw",    song: "Matz can't patch"},
-          {artist: "Celine Dion", song: "I love MeeGo"},
-          {artist: "Deep Purple", song: "Smoke on the water"},
-          {artist: "Dr Dre",      song: "Lyrical Gang-Bang"}
-        ]
-      });
-      // Song list Ext widget
-      var list = new Ext.List({
-          fullscreen: true,
-          itemTpl : '{artist} - {song}',
-          grouped : true,
-          indexBar: false,
-          store: store
-      });
-      list.on('selectionchange', function() {
-        var nodes = list.getSelectedRecords();
-        if ( nodes.length == 0 ) return ;
-        //console.log("Selected: " + nodes[0].data.song + ", by " + nodes[0].data.artist);
-        countDownPanel.show();
-        homePanel.hide();
-      });
-
-      // Shows the count down
+      /**
+       * --------------------------------------------------------------------------------
+       * Count-down Panel
+       *
+       * Shows the count down between Home panel and Song panel
+       */
       var countDownPanel = new Ext.Panel({
         fullscreen: true,
         showAnimation: { type: 'slide', direction: 'right' },
@@ -96,7 +67,13 @@ Ext.setup({
         }, 1000);
       });
 
-      // Shows the currently playing song
+
+      /**
+       * --------------------------------------------------------------------------------
+       * Song Panel
+       *
+       * Shows the currently playing song
+       */
       var songPanel = new Ext.Panel({
         fullscreen: true,
         showAnimation: { type: 'slide', direction: 'left' },
@@ -126,7 +103,6 @@ Ext.setup({
       });
       songPanel.hide();
       songPanel.on('show', function(panel) {
-        console.log("show song panel");
         $('body').addClass('song');
         var url = 'songs/Celine_Dion_-_My_Heart_Will_Go_On.txt';
         panel.lyrics = new Lyrics(url)
@@ -139,7 +115,42 @@ Ext.setup({
         $('body').removeClass('song');
       });
 
-      // Home interface
+      /**
+       * --------------------------------------------------------------------------------
+       * Home Panel
+       */
+
+      // Build a sortable song list show on home
+      Ext.regModel('Songs', { fields: ['artist', 'name'] });
+      var store = new Ext.data.JsonStore({
+        model  : 'Songs',
+        sorters: 'artist',
+        getGroupString : function(record) {
+          return record.get('artist')[0];
+        },
+        data: [
+          {artist: "Zed Shaw",    song: "Matz can't patch"},
+          {artist: "Celine Dion", song: "I love MeeGo"},
+          {artist: "Deep Purple", song: "Smoke on the water"},
+          {artist: "Dr Dre",      song: "Lyrical Gang-Bang"}
+        ]
+      });
+      // Song list Ext widget
+      var list = new Ext.List({
+          fullscreen: true,
+          itemTpl : '{artist} - {song}',
+          grouped : true,
+          indexBar: false,
+          store: store
+      });
+      list.on('selectionchange', function() {
+        var nodes = list.getSelectedRecords();
+        if ( nodes.length == 0 ) return ;
+        countDownPanel.show();
+        homePanel.hide();
+        list.deselect(nodes);
+      });
+
       var homePanel = new Ext.Panel({
         fullscreen: true,
         layout: 'card',

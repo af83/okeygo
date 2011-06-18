@@ -5,6 +5,7 @@ Ext.setup({
     phoneStartupScreen: 'phone_startup.png',
     glossOnIcon: false,
     onReady: function(){
+      var player = $("#player")[0];
 
       /**
        * --------------------------------------------------------------------------------
@@ -57,6 +58,10 @@ Ext.setup({
 
       // Setup transition count-down when showing panel
       countDownPanel.on('show', function(panel) {
+        // Start loading the song...
+        player.src='songs/Celine_Dion_-_My_Heart_Will_Go_On/Celine_Dion_-_My_Heart_Will_Go_On.mp3';
+        player.load();
+
         var start_at = countDownPanel.startCountingAt + 1;
 
         panel.interval = setInterval(function() {
@@ -122,11 +127,13 @@ Ext.setup({
         var url = 'songs/Celine_Dion_-_My_Heart_Will_Go_On/Celine_Dion_-_My_Heart_Will_Go_On.txt';
         panel.lyrics = new Lyrics(url)
         panel.lyrics.load(function() {
+          player.play();
           panel.lyrics.display();
         });
       });
       songPanel.on('hide', function(panel) {
         if (panel.lyrics) panel.lyrics.stop();
+        player.pause();
         $('body').removeClass('song');
       });
 

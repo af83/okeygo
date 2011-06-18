@@ -41,7 +41,7 @@ Lyrics.display = function(song) {
     var timing = 0;
     var lyrics = song.lyrics;
     Lyrics.timer(lyrics, timing);
-    setInterval(function() {
+    var interval = setInterval(function() {
         Lyrics.timer(lyrics, ++timing);
     }, 100);
 };
@@ -49,7 +49,7 @@ Lyrics.display = function(song) {
 Lyrics.counter = 0;
 
 Lyrics.timer = function(lyrics, timing) {
-    if (timing != lyrics[0][0].start) return ;
+    if (lyrics.length && timing != lyrics[0][0].start) return ;
     $("#lyric").html('');
     var sentence = lyrics.shift();
     sentence.forEach(function(word) {

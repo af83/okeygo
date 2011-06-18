@@ -45,6 +45,7 @@ Ext.setup({
         fullscreen: true,
         showAnimation: { type: 'slide', direction: 'right' },
         html: '<div class="countDown"><p id="counter"></p> </div>',
+        startCountingAt: 3,
         dockedItems: [
           {
             dock : 'top',
@@ -52,7 +53,7 @@ Ext.setup({
             title: 'Sing !',
             items: [
               {
-                ui: 'forward',
+                ui: 'back',
                 text: 'Back to list',
                 handler: function(button) {
                   countDownPanel.backToHomePanel();

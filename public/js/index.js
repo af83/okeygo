@@ -44,8 +44,8 @@ Ext.setup({
       // Shows the count down
       var countDownPanel = new Ext.Panel({
         fullscreen: true,
-        showAnimation: 'slide',
-        html: '<p>count down!</p><div class="countDown"> <p id="counter"></p> </div>',
+        showAnimation: { type: 'slide', direction: 'right' },
+        html: '<div class="countDown"><p id="counter"></p> </div>',
         dockedItems: [
           {
             dock : 'top',
@@ -76,8 +76,8 @@ Ext.setup({
       // Shows the currently playing song
       var songPanel = new Ext.Panel({
         fullscreen: true,
-        showAnimation: 'slide',
-        html: '<p>Shows the currently playing song</p><div id="song"><h2 class="title"></h2><h2 class="artist"></h2><div id="lyric"></div></div>',
+        showAnimation: { type: 'slide', direction: 'right' },
+        html: '<div id="lyric"></div><div id="song"><h2 class="title"></h2><h2 class="artist"></h2></div>',
         dockedItems: [
           {
             dock : 'top',

@@ -30,11 +30,11 @@ body .x-fullscreen { background: transparent; }
 body.song .x-fullscreen { background: transparent url('../images/sings.png') right bottom no-repeat; }
 
 #countDown { background: url('../images/counter.gif') 0 0 no-repeat; }
-#counter { display: block; width: 100%; height: 640px; margin: 0 auto; font: normal 500px Arial; color: #0095AC; text-align: center; background: url('../images/counter_0.gif') center center no-repeat; }
-#counter.counter_4 { background: url('../images/counter_0.gif') center center no-repeat; }
-#counter.counter_3 { background: url('../images/counter_1.gif') center center no-repeat; }
-#counter.counter_2 { background: url('../images/counter_2.gif') center center no-repeat; }
-#counter.counter_1 { background: url('../images/counter_3.gif') center center no-repeat; }
+#counter { display: block; width: 100%; height: 640px; margin: 0 auto; font: normal 500px Arial; color: #0095AC; text-align: center; background: url('../images/counter.gif') center 0 no-repeat; }
+#counter.count_4 { background-position: center -808px; }
+#counter.count_3 { background-position: center -1576px; }
+#counter.count_2 { background-position: center -2344px; }
+#counter.count_1 { background-position: center -3112px; }
 
 #song { width: 400px; margin: 50px auto 0 auto; padding: 10px 25px; border: 1px solid #2F2E2E; border-radius: 5px; background: #FFF; box-shadow: 3px 3px 3px rgba(47,46,46,0.5); -webkit-box-shadow: 3px 3px 3px rgba(47,46,46,0.5); }
 #song h2 { text-align: center; }

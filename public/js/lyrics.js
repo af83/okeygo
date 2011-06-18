@@ -41,8 +41,6 @@ Lyrics.prototype.load = function(callback) {
         }
         sentence.push(word);
       } else if (line[0] == '-') {
-        word = { sleep: line.slice(2) };
-        sentence.push(word);
         song.lyrics.push(sentence);
         sentence = [];
       } else if (line[0] == 'E') {
@@ -82,19 +80,17 @@ Lyrics.prototype.timer = function(timing) {
   $("#lyric").html('');
   var sentence = lyrics.shift();
   sentence.forEach(function(word) {
-    if (word.text) {
-      var id = 'word-' + Lyrics.counter++;
-      $('#lyric').append('<span id="' + id + '">' + word.text + '</span>');
-      $('#' + id).addClass('word');
-      $('#' + id).addClass(song.midinote(word.note, song.note_min, song.note_max));
-      if (word.start == timing) {
+    var id = 'word-' + Lyrics.counter++;
+    $('#lyric').append('<span id="' + id + '">' + word.text + '</span>');
+    $('#' + id).addClass('word');
+    $('#' + id).addClass(song.midinote(word.note, song.note_min, song.note_max));
+    if (word.start == timing) {
+      song.choose(id, word.duration);
+    } else {
+      var t = setTimeout(function() {
         song.choose(id, word.duration);
-      } else {
-        var t = setTimeout(function() {
-          song.choose(id, word.duration);
-        }, (word.start - timing) * song.step);
-        song.timeouts.push(t);
-      }
+      }, (word.start - timing) * song.step);
+      song.timeouts.push(t);
     }
   });
 };

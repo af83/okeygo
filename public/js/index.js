@@ -102,7 +102,8 @@ Ext.setup({
       var homePanel = new Ext.Panel({
         fullscreen: true,
         layout: 'card',
-        showAnimation: 'slide',
+        showAnimation: { type: 'slide', direction: 'right' },
+        reverse: true,
         dockedItems: [
           {
             dock : 'top',

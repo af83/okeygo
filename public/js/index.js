@@ -15,7 +15,7 @@ Ext.setup({
       var countDownPanel = new Ext.Panel({
         fullscreen: true,
         showAnimation: { type: 'slide', direction: 'right' },
-        html: '<div class="countDown"><p id="counter"></p> </div>',
+        html: '<div class="countDown"><p id="counter"></p></div>',
         startCountingAt: 4,
         dockedItems: [
           {
@@ -60,10 +60,15 @@ Ext.setup({
         var start_at = countDownPanel.startCountingAt + 1;
 
         panel.interval = setInterval(function() {
-          if ( start_at-- > 1 )
-            return $("#counter").html(start_at);
-          if ( panel.interval !== null )
+          if ( start_at-- > 1 ) {
+            $("#counter").html(start_at);
+            $("#counter").removeClass('count_'+(start_at+1)).addClass('count_'+start_at);
+            return;
+          }
+          if ( panel.interval !== null ) {
+            $("#counter").removeClass('count_1');
             panel.toSongPanel();
+          }
         }, 1000);
       });
 

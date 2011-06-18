@@ -37,11 +37,29 @@ Ext.setup({
         var nodes = list.getSelectedRecords();
         if ( nodes.length == 0 ) return ;
         console.log("Selected: " + nodes[0].data.song + ", by " + nodes[0].data.artist);
+        songPanel.show();
+        homePanel.hide();
       });
 
-      // Base interface
-      var panel = new Ext.Panel({
+      // Shows the count down
+      var countDownPanel = new Ext.Panel({
         fullscreen: true,
+        showAnimation: 'slide',
+        html: "Showing countdown here"
+      });
+
+      // Shows the currently playing song
+      var songPanel = new Ext.Panel({
+        fullscreen: true,
+        showAnimation: 'easeIn',
+        html: "Shows the currently playing song"
+      });
+
+      // Home interface
+      var homePanel = new Ext.Panel({
+        fullscreen: true,
+        layout: 'card',
+        showAnimation: 'slide',
         dockedItems: [
             {
                 dock : 'top',

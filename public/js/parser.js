@@ -55,7 +55,8 @@ Lyrics.timer = function(lyrics, timing) {
     sentence.forEach(function(word) {
         if (word.text) {
             var id = 'word-' + Lyrics.counter++;
-            $('#lyric').append('<span class="word" id="' + id + '">' + word.text + '</span>');
+            $('#lyric').append('<span id="' + id + '">' + word.text + '</span>');
+            $('#lyric').addClass('word');
             if (word.start == timing) {
                 Lyrics.choose(id, word);
             } else {

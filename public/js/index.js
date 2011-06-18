@@ -57,7 +57,10 @@ Ext.setup({
           {
             dock : 'top',
             xtype: 'toolbar',
-            title: 'Sing !'
+            title: 'Sing !',
+            items: [
+              { ui: 'forward', text: 'Back to list' }
+            ]
           },
         ]
       });

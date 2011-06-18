@@ -9,3 +9,8 @@ body {
 .current {
   color: red;
 }
+
+#lyric { display: block; width: 1000px; margin: 0 auto; font: normal 60px/80px Arial; color: #3B3B3B; text-align: center; }
+#lyric .current { color: #50A2B3; }
+
+body.celine .x-fullscreen {  }

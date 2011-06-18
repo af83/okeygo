@@ -36,6 +36,7 @@ Ext.setup({
         var nodes = list.getSelectedRecords();
         if ( nodes.length == 0 ) return ;
         console.log("Selected: " + nodes[0].data.song + ", by " + nodes[0].data.artist);
+        $('body').addClass('celine');
         songPanel.show();
         homePanel.hide();
         songPanel.fireEvent('show');

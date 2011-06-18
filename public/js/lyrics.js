@@ -41,8 +41,9 @@ Lyrics.display = function(song) {
     var timing = 0;
     var lyrics = song.lyrics;
     Lyrics.timer(lyrics, timing);
-    var interval = setInterval(function() {
+    var intval = setInterval(function() {
         Lyrics.timer(lyrics, ++timing);
+        if (!lyrics.length) clearInterval(intval);
     }, 100);
 };
 

@@ -119,7 +119,7 @@ Ext.setup({
       songPanel.hide();
       songPanel.on('show', function(panel) {
         $('body').addClass('song');
-        var url = 'songs/Celine_Dion_-_My_Heart_Will_Go_On.txt';
+        var url = 'songs/Celine_Dion_-_My_Heart_Will_Go_On/Celine_Dion_-_My_Heart_Will_Go_On.txt';
         panel.lyrics = new Lyrics(url)
         panel.lyrics.load(function() {
           panel.lyrics.display();

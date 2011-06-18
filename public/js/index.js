@@ -37,7 +37,6 @@ Ext.setup({
         if ( nodes.length == 0 ) return ;
         //console.log("Selected: " + nodes[0].data.song + ", by " + nodes[0].data.artist);
         countDownPanel.show();
-        countDownPanel.fireEvent('show');
         homePanel.hide();
       });
 
@@ -52,42 +51,62 @@ Ext.setup({
             xtype: 'toolbar',
             title: 'Sing !',
             items: [
-              { ui: 'forward', text: 'Back to list' }
+              {
+                ui: 'forward',
+                text: 'Back to list',
+                handler: function(button) {
+                  countDownPanel.backToHomePanel();
+                }
+              }
             ]
           },
-        ]
-      });
-      countDownPanel.hide();
-      countDownPanel.on('show', function(panel) {
-        console.log("show cdpanel");
-        var start_at = 4;
-        var interval = setInterval(function() {
-          if ( start_at-- > 0 ) {
-            $("#counter").html(start_at);
-            return ;
-          }
-          clearInterval(interval);
+        ],
+        // Helper to transition back to home panel
+        backToHomePanel: function() {
+          countDownPanel.hide();
+          homePanel.show();
+        },
+
+        // Helper to transition forward to song panel
+        toSongPanel: function() {
           countDownPanel.hide();
           songPanel.show();
-          songPanel.fireEvent('show');
+        },
+        interval: null
+      });
+      countDownPanel.hide();
+
+      // Clear transition count-down when hiding panel
+      countDownPanel.on('hide', function(panel) {
+        $("#counter").html("");
+        clearInterval(panel.interval);
+        panel.interval = null;
+      });
+
+      // Setup transition count-down when showing panel
+      countDownPanel.on('show', function(panel) {
+        var start_at = countDownPanel.startCountingAt + 1;
+
+        panel.interval = setInterval(function() {
+          if ( start_at-- > 1 )
+            return $("#counter").html(start_at);
+          if ( panel.interval !== null )
+            panel.toSongPanel();
         }, 1000);
       });
 
       // Shows the currently playing song
       var songPanel = new Ext.Panel({
         fullscreen: true,
-        showAnimation: 'slide',
-        html: '<p>Shows the currently playing song</p>\
-        <div id="song"><h2 class="title"></h2><h2 class="artist"></h2>\
-        <div id="lyric"></div></div>\
-        <meter id="progressbar" value="0" max="100">Low</meter>',
+        showAnimation: { type: 'slide', direction: 'left' },
+        html: '<p>Shows the currently playing song</p><div id="song"><h2 class="title"></h2><h2 class="artist"></h2><div id="lyric"></div></div>',
         dockedItems: [
           {
             dock : 'top',
             xtype: 'toolbar',
             title: 'Sing !',
             items: [
-              { ui: 'forward', text: 'Back to list' }
+              { ui: 'back', text: 'Back to list' }
             ]
           },
         ]
@@ -119,5 +138,6 @@ Ext.setup({
         ],
         items: [ list ]
       });
+      homePanel.show();
     }
 });

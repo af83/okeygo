@@ -103,7 +103,6 @@ Ext.setup({
         fullscreen: true,
         layout: 'card',
         showAnimation: { type: 'slide', direction: 'right' },
-        reverse: true,
         dockedItems: [
           {
             dock : 'top',

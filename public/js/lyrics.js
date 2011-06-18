@@ -60,7 +60,7 @@ Lyrics.counter = 0;
 Lyrics.timer = function(song, timing) {
     var lyrics = song.lyrics;
     var self = this;
-    if (lyrics.length && timing != lyrics[0][0].start) return ;
+    if (!lyrics.length || timing != lyrics[0][0].start) return ;
     $("#lyric").html('');
     var sentence = lyrics.shift();
     sentence.forEach(function(word) {

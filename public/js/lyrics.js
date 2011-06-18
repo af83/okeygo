@@ -1,7 +1,7 @@
 window.Lyrics = {};
 
 Lyrics.load = function(url, callback) {
-    var song = { lyrics: [], note_min: -1, note_max: -1 };
+    var song = { lyrics: [], note_min: -1, note_max: -1, duration: -1 };
 
     $.get(url, function(resp) {
         var sentence = [];
@@ -33,6 +33,9 @@ Lyrics.load = function(url, callback) {
                 sentence = [];
             } else if (line[0] == 'E') {
                 song.lyrics.push(sentence);
+                word = sentence[sentence.length - 1];
+                song.duration = parseInt(word.start) + parseInt(word.duration);
+                if ($('#progressbar')) $('#progressbar').attr('max', song.duration);
                 sentence = [];
                 callback(song);
             }
@@ -47,7 +50,8 @@ Lyrics.display = function(song) {
     Lyrics.timer(song, timing);
     var intval = setInterval(function() {
         Lyrics.timer(song, ++timing);
-        if (!song.lyrics.length) clearInterval(intval);
+        if ($('#progressbar')) $('#progressbar').attr('value', timing);
+        if (timing == song.duration) clearInterval(intval);
     }, 100);
 };
 

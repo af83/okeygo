@@ -76,8 +76,11 @@ Ext.setup({
       // Shows the currently playing song
       var songPanel = new Ext.Panel({
         fullscreen: true,
-        showAnimation: { type: 'slide', direction: 'right' },
-        html: '<div id="lyric"></div><div id="song"><h2 class="title"></h2><h2 class="artist"></h2></div>',
+        showAnimation: 'slide',
+        html: '<p>Shows the currently playing song</p>\
+        <div id="song"><h2 class="title"></h2><h2 class="artist"></h2>\
+        <div id="lyric"></div></div>\
+        <meter id="progressbar" value="0" max="100">Low</meter>',
         dockedItems: [
           {
             dock : 'top',

@@ -52,7 +52,14 @@ Ext.setup({
       var songPanel = new Ext.Panel({
         fullscreen: true,
         showAnimation: 'slide',
-        html: '<p>Shows the currently playing song</p><div id="song"><h2 class="title"></h2><h2 class="artist"></h2><div id="lyric"></div></div>'
+        html: '<p>Shows the currently playing song</p><div id="song"><h2 class="title"></h2><h2 class="artist"></h2><div id="lyric"></div></div>',
+        dockedItems: [
+            {
+                dock : 'top',
+                xtype: 'toolbar',
+                title: 'Pick a song !'
+            },
+        ]
       });
       songPanel.on('show', function(panel) {
         console.log("show song panel");

@@ -10,6 +10,7 @@ Lyrics.prototype.init = function() {
   this.note_min = -1;
   this.note_max = -1;
   this.duration = -1;
+  this.waited   = false;
 };
 
 Lyrics.counter = 0;
@@ -57,6 +58,15 @@ Lyrics.prototype.load = function(callback) {
 
 Lyrics.prototype.display = function() {
   var song = this;
+  if ( song.gap && !this.waited ) {
+    var self = this;
+    setTimeout(function() {
+      console.log("waited");
+      self.waited = true;
+      self.display();
+    }, song.gap);
+    return ;
+  }
   $('#song .title').html(this.title);
   $('#song .artist').html(this.artist);
   $('#progressbar').attr('data-duration', song.duration);

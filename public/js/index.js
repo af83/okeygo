@@ -32,16 +32,13 @@ Ext.setup({
           indexBar: false,
           store: store
       });
-      list.show();
       list.on('selectionchange', function() {
         var nodes = list.getSelectedRecords();
         if ( nodes.length == 0 ) return ;
         console.log("Selected: " + nodes[0].data.song + ", by " + nodes[0].data.artist);
-
-        var url = 'songs/Celine_Dion_-_My_Heart_Will_Go_On.txt';
-        Lyrics.load(url, function(song) {
-            Lyrics.display(song);
-        });
+        songPanel.show();
+        homePanel.hide();
+        songPanel.fireEvent('show');
       });
 
       // Shows the count down
@@ -56,6 +53,13 @@ Ext.setup({
         fullscreen: true,
         showAnimation: 'easeIn',
         html: "Shows the currently playing song"
+      });
+      songPanel.on('show', function(panel) {
+        console.log("show song panel");
+        var url = 'songs/Celine_Dion_-_My_Heart_Will_Go_On.txt';
+        Lyrics.load(url, function(song) {
+            Lyrics.display(song);
+        });
       });
 
       // Home interface

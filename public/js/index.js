@@ -87,7 +87,7 @@ Ext.setup({
       var songPanel = new Ext.Panel({
         fullscreen: true,
         showAnimation: { type: 'slide', direction: 'left' },
-        html: '<div id="lyric"></div>\
+        html: '<div id="lyric">&nbsp;</div>\
         <div id="song"><h2><span class="artist"></span> - <span class="title"></span></h2>\
         <div class="meter animate"><span id="progressbar" style="width: 50%"><span></span></span></div>\
         </div>',

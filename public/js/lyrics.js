@@ -1,7 +1,7 @@
 window.Lyrics = {};
 
 Lyrics.load = function(url, callback) {
-    var song = { lyrics: [] };
+    var song = { lyrics: [], note_min: -1, note_max: -1 };
 
     $.get(url, function(resp) {
         var sentence = [];
@@ -17,9 +17,14 @@ Lyrics.load = function(url, callback) {
                 word = {
                     start:    row[0],
                     duration: row[1],
-                    note:     row[2],
+                    note:     parseInt(row[2], 10),
                     text:     row.slice(3).join(" ")
                 };
+                if (word.note < song.note_min || song.note_min == -1) {
+                  song.note_min = word.note;
+                } else if (word.note > song.note_max || song.note_max == -1) {
+                  song.note_max = word.note;
+                }
                 sentence.push(word);
             } else if (line[0] == '-') {
                 word = { sleep: line.slice(2) };
@@ -39,17 +44,17 @@ Lyrics.display = function(song) {
     $('#song .title').html(song['TITLE']);
     $('#song .artist').html(song['ARTIST']);
     var timing = 0;
-    var lyrics = song.lyrics;
-    Lyrics.timer(lyrics, timing);
+    Lyrics.timer(song, timing);
     var intval = setInterval(function() {
-        Lyrics.timer(lyrics, ++timing);
-        if (!lyrics.length) clearInterval(intval);
+        Lyrics.timer(song, ++timing);
+        if (!song.lyrics.length) clearInterval(intval);
     }, 100);
 };
 
 Lyrics.counter = 0;
 
-Lyrics.timer = function(lyrics, timing) {
+Lyrics.timer = function(song, timing) {
+    var lyrics = song.lyrics;
     var self = this;
     if (lyrics.length && timing != lyrics[0][0].start) return ;
     $("#lyric").html('');
@@ -59,7 +64,7 @@ Lyrics.timer = function(lyrics, timing) {
             var id = 'word-' + Lyrics.counter++;
             $('#lyric').append('<span id="' + id + '">' + word.text + '</span>');
             $('#' + id).addClass('word');
-            $('#' + id).addClass(self.midinote(word.note));
+            $('#' + id).addClass(self.midinote(word.note, song.note_min, song.note_max));
             if (word.start == timing) {
                 Lyrics.choose(id, word);
             } else {
@@ -82,10 +87,11 @@ Lyrics.range = function(begin, end) {
     var low = [];
     var medium = [];
     var high = [];
+    var size = end - begin;
     for (var i = begin; i <= end; i++) {
-        if (i < (end / 3))
+        if (i < (size / 3) + begin)
             low.push(i);
-        else if (i < (end / 3) * 2)
+        else if (i < (size / 3) * 2 + begin)
             medium.push(i);
         else
             high.push(i);
@@ -101,10 +107,10 @@ Lyrics.range = function(begin, end) {
 * @params {Integer} note
 * @return {String} the CSS class
 */
-Lyrics.midinote = function(note) {
-    var midirange = this.range(0, 127);
+Lyrics.midinote = function(note, min, max) {
+    var midirange = this.range(min, max);
     for (var i in midirange) {
-        if (midirange[i].indexOf(parseInt(note, 10)) >= 0)
+        if (midirange[i].indexOf(note) >= 0)
             return i;
     }
 };

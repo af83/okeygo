@@ -35,7 +35,7 @@ Lyrics.load = function(url, callback) {
                 song.lyrics.push(sentence);
                 song.step = 0.25 * 60 / song.bpm * 1000;
                 word = sentence[sentence.length - 1];
-                song.duration = parseInt(word.start) + parseInt(word.duration);
+                song.duration = parseInt(word.start, 10) + parseInt(word.duration, 10);
                 if ($('#progressbar')) $('#progressbar').attr('max', song.duration);
                 sentence = [];
                 callback(song);
@@ -118,6 +118,7 @@ Lyrics.midinote = function(note, min, max) {
         if (midirange[i].indexOf(note) >= 0)
             return i;
     }
+    return '';
 };
 
 Lyrics.choose = function(id, word, step) {

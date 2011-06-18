@@ -129,8 +129,9 @@ Ext.setup({
         console.log("show song panel");
         $('body').addClass('song');
         var url = 'songs/Celine_Dion_-_My_Heart_Will_Go_On.txt';
-        Lyrics.load(url, function(song) {
-          Lyrics.display(song);
+        var lyrics = new Lyrics(url)
+        lyrics.load(function() {
+          lyrics.display();
         });
       });
       songPanel.on('hide', function(panel) {

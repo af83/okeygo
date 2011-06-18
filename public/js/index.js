@@ -7,7 +7,7 @@ Ext.setup({
     onReady: function(){
 
       // Sample player
-      // var player = $("#player")[0];
+      var player = $("#player");
 
       // Build a sortable song list
       Ext.regModel('Songs', { fields: ['artist', 'name'] });

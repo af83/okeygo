@@ -22,7 +22,8 @@ OTHER_FILES += \
     public/index.html \
     public/css/sencha-touch.css \
     public/js/sencha-touch.js \
-    public/js/index.js
+    public/js/index.js \
+    public/media/sample.mp3
 
 RESOURCES += \
     Resources.qrc

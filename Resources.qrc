@@ -4,5 +4,6 @@
         <file>public/css/sencha-touch.css</file>
         <file>public/js/index.js</file>
         <file>public/js/sencha-touch.js</file>
+        <file>public/media/sample.mp3</file>
     </qresource>
 </RCC>

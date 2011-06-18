@@ -8,7 +8,7 @@
 #AutoReqProv: no
 
 Name:           web
-Version:        0.0.1
+Version:0.0.1
 Release:        1
 License:        <insert license tag>
 Summary:        <insert summary tag>

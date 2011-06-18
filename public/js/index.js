@@ -37,8 +37,11 @@ Ext.setup({
         var nodes = list.getSelectedRecords();
         if ( nodes.length == 0 ) return ;
         console.log("Selected: " + nodes[0].data.song + ", by " + nodes[0].data.artist);
-        songPanel.show();
-        homePanel.hide();
+
+        var url = 'songs/Celine_Dion_-_My_Heart_Will_Go_On.txt';
+        Lyrics.load(url, function(song) {
+            Lyrics.display(song);
+        });
       });
 
       // Shows the count down

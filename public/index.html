@@ -2,21 +2,30 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>af83 tunes</title>
+    <title>OKEYGO, by af83!</title>
     <link rel="stylesheet" href="css/sencha-touch.css" type="text/css">
     <link rel="stylesheet" href="css/application.css" type="text/css">
     <script type="text/javascript" src="js/zepto.min.js"></script>
     <script type="text/javascript" src="js/sencha-touch.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/parser.js"></script>
 </head>
 
 <body>
+    <h1>OKEYGO, by af83!</h1>
+
     <div class="hidden">
         <audio id="player" src="media/sample.mp3" controls></audio>
         <p>
           <input name="url" value="http://cyprio.net/foo.mp3" id="url" />
           <input type="button" name="playBtn" value="play" id="play" />
         </p>
+    </div>
+
+    <div id="song">
+        <h2 class="title">XXX</h2>
+        <h2 class="artist">XXX</h2>
+        <div id="lyric"></div>
     </div>
 </body>
 

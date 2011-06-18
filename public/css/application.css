@@ -5,3 +5,7 @@ body {
   display: none;
   visibility: hidden;
 }
+
+.current {
+  color: red;
+}

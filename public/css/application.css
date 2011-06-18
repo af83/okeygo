@@ -28,7 +28,7 @@ body.song .x-fullscreen { background: transparent url('../images/sings.png') rig
 
 #counter { display: block; width: 1000px; margin: 0 auto; font: normal 500px Arial; color: #0095AC; text-align: center; }
 
-#song { width: 400px; margin: 50px auto 0 auto; padding: 10px 25px; border: 2px solid #50A2B3; border-radius: 5px; background: #FFF; }
+#song { width: 400px; margin: 50px auto 0 auto; padding: 10px 25px; border: 1px solid #2F2E2E; border-radius: 5px; background: #FFF; box-shadow: 3px 3px 3px rgba(47,46,46,0.5); -webkit-box-shadow: 3px 3px 3px rgba(47,46,46,0.5); }
 #song h2 { text-align: center; }
 #song h2 .artist { font: normal 20px Arial; color: #2F2E2E; }
 #song h2 .title { font: bold 20px Arial; color: #50A2B3; }

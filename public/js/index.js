@@ -45,7 +45,7 @@ Ext.setup({
         fullscreen: true,
         showAnimation: { type: 'slide', direction: 'right' },
         html: '<div class="countDown"><p id="counter"></p> </div>',
-        startCountingAt: 3,
+        startCountingAt: 4,
         dockedItems: [
           {
             dock : 'top',
@@ -129,13 +129,13 @@ Ext.setup({
         console.log("show song panel");
         $('body').addClass('song');
         var url = 'songs/Celine_Dion_-_My_Heart_Will_Go_On.txt';
-        var lyrics = new Lyrics(url)
-        lyrics.load(function() {
-          lyrics.display();
+        panel.lyrics = new Lyrics(url)
+        panel.lyrics.load(function() {
+          panel.lyrics.display();
         });
       });
       songPanel.on('hide', function(panel) {
-        // Lyrics.stop();
+        if (panel.lyrics) panel.lyrics.stop();
         $('body').removeClass('song');
       });
 

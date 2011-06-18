@@ -1,5 +1,6 @@
 Lyrics = function(url) {
   this.url      = url;
+  this.timeouts = [];
   this.lyrics   = [];
   this.note_min = -1;
   this.note_max = -1;
@@ -58,11 +59,14 @@ Lyrics.prototype.display = function() {
   $('#progressbar').attr('data-duration', song.duration);
   var timing = 0;
   song.timer(timing);
-  var intval = setInterval(function() {
+  song.intval = setInterval(function() {
     song.timer(++timing);
     var currentPercent = (timing / song.duration) * 100;
     if ($('#progressbar')) $('#progressbar').attr('style', 'width:' + currentPercent + '%');
-    if (timing == song.duration) clearInterval(intval);
+    if (timing == song.duration) {
+      clearInterval(song.intval);
+      song.intval = null;
+    }
   }, song.step);
 };
 
@@ -81,9 +85,10 @@ Lyrics.prototype.timer = function(timing) {
       if (word.start == timing) {
         song.choose(id, word.duration);
       } else {
-        setTimeout(function() {
+        var t = setTimeout(function() {
           song.choose(id, word.duration);
         }, (word.start - timing) * song.step);
+        song.timeouts.push(t);
       }
     }
   });
@@ -92,10 +97,20 @@ Lyrics.prototype.timer = function(timing) {
 Lyrics.prototype.choose = function(id, duration) {
   id = '#' + id;
   $(id).addClass('current');
-  setTimeout(function() {
+  var t = setTimeout(function() {
     $(id).removeClass('current');
   }, duration * this.step);
+  this.timeouts.push(t);
 };
+
+Lyrics.prototype.stop = function() {
+  this.timeouts.forEach(clearTimeout);
+  this.timeouts = [];
+  if (this.intval) {
+    clearInterval(this.intval);
+    this.intval = null;
+  }
+}
 
 /*
 * Return the CSS class 'low', 'medium' and 'high'

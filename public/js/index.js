@@ -57,7 +57,7 @@ Ext.setup({
             {
                 dock : 'top',
                 xtype: 'toolbar',
-                title: 'Pick a song !'
+                title: 'Sing !'
             },
         ]
       });

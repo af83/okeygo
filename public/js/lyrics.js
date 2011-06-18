@@ -36,7 +36,7 @@ Lyrics.load = function(url, callback) {
                 song.step = 0.25 * 60 / song.bpm * 1000;
                 word = sentence[sentence.length - 1];
                 song.duration = parseInt(word.start, 10) + parseInt(word.duration, 10);
-                if ($('#progressbar')) $('#progressbar').attr('max', song.duration);
+                if ($('#progressbar')) $('#progressbar').attr('data-duration', song.duration);
                 sentence = [];
                 callback(song);
             }
@@ -51,7 +51,8 @@ Lyrics.display = function(song) {
     Lyrics.timer(song, timing);
     var intval = setInterval(function() {
         Lyrics.timer(song, ++timing);
-        if ($('#progressbar')) $('#progressbar').attr('value', timing);
+        var currentPercent = (timing / song.duration) * 100;
+        if ($('#progressbar')) $('#progressbar').attr('style', 'width:' + currentPercent + '%');
         if (timing == song.duration) clearInterval(intval);
     }, song.step);
 };

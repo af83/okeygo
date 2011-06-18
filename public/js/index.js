@@ -36,16 +36,41 @@ Ext.setup({
         var nodes = list.getSelectedRecords();
         if ( nodes.length == 0 ) return ;
         //console.log("Selected: " + nodes[0].data.song + ", by " + nodes[0].data.artist);
-        songPanel.show();
+        countDownPanel.show();
+        countDownPanel.fireEvent('show');
         homePanel.hide();
-        songPanel.fireEvent('show');
       });
 
       // Shows the count down
       var countDownPanel = new Ext.Panel({
         fullscreen: true,
         showAnimation: 'slide',
-        html: "Showing countdown here"
+        html: '<p>count down!</p><div class="countDown"> <p id="counter"></p> </div>',
+        dockedItems: [
+          {
+            dock : 'top',
+            xtype: 'toolbar',
+            title: 'Sing !',
+            items: [
+              { ui: 'forward', text: 'Back to list' }
+            ]
+          },
+        ]
+      });
+      countDownPanel.hide();
+      countDownPanel.on('show', function(panel) {
+        console.log("show cdpanel");
+        var start_at = 4;
+        var interval = setInterval(function() {
+          if ( start_at-- > 0 ) {
+            $("#counter").html(start_at);
+            return ;
+          }
+          clearInterval(interval);
+          countDownPanel.hide();
+          songPanel.show();
+          songPanel.fireEvent('show');
+        }, 1000);
       });
 
       // Shows the currently playing song
@@ -64,8 +89,9 @@ Ext.setup({
           },
         ]
       });
+      songPanel.hide();
       songPanel.on('show', function(panel) {
-        //console.log("show song panel");
+        console.log("show song panel");
         var url = 'songs/Celine_Dion_-_My_Heart_Will_Go_On.txt';
         Lyrics.load(url, function(song) {
             Lyrics.display(song);

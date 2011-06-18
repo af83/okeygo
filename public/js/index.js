@@ -8,36 +8,48 @@ Ext.setup({
 
       // Sample player
       var player = $("#player")[0];
-      $("#play").bind('click', function(event) {
-        event.preventDefault();
-        player.attr('src', $("#url").val());
-        player.play();
+
+      // Build a sortable song list
+      Ext.regModel('Songs', { fields: ['artist', 'name'] });
+      var store = new Ext.data.JsonStore({
+        model  : 'Songs',
+        sorters: 'artist',
+        getGroupString : function(record) {
+          return record.get('artist')[0];
+        },
+        data: [
+          {artist: "Zed Shaw",    song: "Matz can't patch"},
+          {artist: "Celine Dion", song: "I love MeeGo"},
+          {artist: "Deep Purple", song: "Smoke on the water"},
+          {artist: "Dr Dre",      song: "Lyrical Gang-Bang"}
+        ]
+      });
+      // Song list Ext widget
+      var list = new Ext.List({
+          fullscreen: true,
+          itemTpl : '{artist} - {song}',
+          grouped : true,
+          indexBar: false,
+          store: store
+      });
+      list.show();
+      list.on('selectionchange', function() {
+        var nodes = list.getSelectedRecords();
+        if ( nodes.length == 0 ) return ;
+        console.log("Selected: " + nodes[0].data.song + ", by " + nodes[0].data.artist);
       });
 
+      // Base interface
       var panel = new Ext.Panel({
         fullscreen: true,
-
         dockedItems: [
             {
                 dock : 'top',
                 xtype: 'toolbar',
-                title: 'af83 tunes'
+                title: 'Pick a song !'
             },
-            {
-                dock : 'top',
-                xtype: 'toolbar',
-                ui   : 'light',
-                items: [
-                    {
-                        text: 'Youpi!',
-                        handler: function() { player.play(); }
-                    }
-                ]
-            }
         ],
-
-        html: 'Basic interface'
+        items: [ list ]
       });
     }
 });
-

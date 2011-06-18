@@ -37,7 +37,7 @@ body.song .x-fullscreen { background: transparent url('../images/sings.png') rig
 #song h2 .artist { font: normal 20px Arial; color: #2F2E2E; }
 #song h2 .title { font: bold 20px Arial; color: #50A2B3; }
 
-#progressbar { margin: -10px 0px 0px 0; width: 100%; height: 10px; }
+#progressbar { margin: -10px 0px 0px 1px; width: 100%; height: 10px; }
 
 /*
   grey #2F2E2E

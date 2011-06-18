@@ -11,7 +11,7 @@ Lyrics.load = function(url, callback) {
             var words = {};
             if (line[0] == '#') {
                 row = line.slice(1).split(':');
-                song[row[0]] = row[1];
+                song[row[0].toLowerCase()] = row[1];
             } else if (line[0] == ':') {
                 row = line.slice(2).split(' ');
                 word = {
@@ -33,6 +33,7 @@ Lyrics.load = function(url, callback) {
                 sentence = [];
             } else if (line[0] == 'E') {
                 song.lyrics.push(sentence);
+                song.step = 0.25 * 60 / song.bpm * 1000;
                 word = sentence[sentence.length - 1];
                 song.duration = parseInt(word.start) + parseInt(word.duration);
                 if ($('#progressbar')) $('#progressbar').attr('max', song.duration);
@@ -44,15 +45,15 @@ Lyrics.load = function(url, callback) {
 };
 
 Lyrics.display = function(song) {
-    $('#song .title').html(song['TITLE']);
-    $('#song .artist').html(song['ARTIST']);
+    $('#song .title').html(song.title);
+    $('#song .artist').html(song.artist);
     var timing = 0;
     Lyrics.timer(song, timing);
     var intval = setInterval(function() {
         Lyrics.timer(song, ++timing);
         if ($('#progressbar')) $('#progressbar').attr('value', timing);
         if (timing == song.duration) clearInterval(intval);
-    }, 100);
+    }, song.step);
 };
 
 Lyrics.counter = 0;
@@ -70,11 +71,11 @@ Lyrics.timer = function(song, timing) {
             $('#' + id).addClass('word');
             $('#' + id).addClass(self.midinote(word.note, song.note_min, song.note_max));
             if (word.start == timing) {
-                Lyrics.choose(id, word);
+                Lyrics.choose(id, word, song.step);
             } else {
                 setTimeout(function() {
-                    Lyrics.choose(id, word);
-                }, (word.start - timing) * 100);
+                    Lyrics.choose(id, word, song.step);
+                }, (word.start - timing) * song.step);
             }
         }
     });
@@ -119,10 +120,10 @@ Lyrics.midinote = function(note, min, max) {
     }
 };
 
-Lyrics.choose = function(id, word) {
+Lyrics.choose = function(id, word, step) {
     id = '#' + id;
     $(id).addClass('current');
     setTimeout(function() {
         $(id).removeClass('current');
-    }, word.duration * 100);
+    }, word.duration * step);
 };

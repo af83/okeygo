@@ -6,8 +6,11 @@ echo '{"data":[' > $file
 lists=`ls public/songs`
 firstline='';
 for line in $lists; do
-	artist=$(echo $line | cut -d"-" -f1 | tr "_" " ")
-	song=$(echo $line | cut -d"-" -f2 | tr "_" " ")
+	## artist extract
+	artist=$(echo $line | cut -d"-" -f1 | tr "_" " " | sed -e 's/ $//')
+	## song extract
+	song=$(echo $line | cut -d"-" -f2 | tr "_" " " | sed -e 's/^ //')
+	# comma not for the first line
 	if [ -z $firstline ]; then
 		firstline='xxx'
 	else

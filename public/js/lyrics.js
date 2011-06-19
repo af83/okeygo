@@ -77,17 +77,21 @@ Lyrics.prototype.display = function() {
     return ;
   }
 
-  var timing = 0;
-  song.timer(timing);
+  var zero = new Date();
+  var timing, prev;
+  song.timer(0);
   song.intval = setInterval(function() {
-    song.timer(++timing);
+    timing = Math.round((new Date() - zero) / song.step);
+    if (prev == timing) return ;
+    prev = timing;
+    song.timer(timing);
     var currentPercent = (timing / song.duration) * 100;
     if ($('#progressbar')) $('#progressbar').attr('style', 'width:' + currentPercent + '%');
     if (timing == song.duration) {
       clearInterval(song.intval);
       song.intval = null;
     }
-  }, song.step);
+  }, 10);
 };
 
 Lyrics.prototype.timer = function(timing) {

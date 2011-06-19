@@ -1,8 +1,5 @@
 #include <QtGui/QApplication>
 #include <QtWebKit/QWebView>
-#include <iostream>
-
-using namespace std;
 
 int main(int argc, char *argv[])
 {

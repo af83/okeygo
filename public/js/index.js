@@ -103,6 +103,12 @@ Ext.setup({
                   songPanel.backToHomePanel();
                 }
               },
+              {
+                text: 'A Cappella',
+                handler: function(button) {
+                  songPanel.aCappella();
+                }
+              },
               { ui: 'forward',
                 text: 'Replay',
                 handler: function(button) {
@@ -112,6 +118,13 @@ Ext.setup({
             ]
           }
         ],
+        aCappella: function() {
+          if (player.volume) {
+            player.volume = 0;
+          } else {
+            player.volume = 1;
+          }
+        },
         backToHomePanel: function() {
           songPanel.hide();
           homePanel.show();

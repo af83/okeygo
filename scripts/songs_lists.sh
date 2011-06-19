@@ -13,6 +13,8 @@ for line in $lists; do
 	else
 		echo -n ',' >> $file 
 	fi
-	echo '{"artist":"'$artist'", "song":"'$song'"}' >> $file
+	echo '{"artist":"'$artist'", "song":"'$song'"' >> $file
+	echo ', "url":"songs/'$line'/'$line'.mp3"' >> $file
+	echo ', "lyrics":"songs/'$line'/'$line'.txt"}' >> $file
 done
 echo ']}' >> $file

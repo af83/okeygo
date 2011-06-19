@@ -1,7 +1,8 @@
 #!/usr/bin/env sh
+# http://www.sencha.com/learn/Tutorial:PropertyGrid_with_JsonStore
 
 file="public/js/songs.json"
-echo '[' > $file
+echo '{"data":[' > $file
 lists=`ls public/songs`
 firstline='';
 for line in $lists; do
@@ -14,4 +15,4 @@ for line in $lists; do
 	fi
 	echo '{"artist":"'$artist'", "song":"'$song'"}' >> $file
 done
-echo ']' >> $file
+echo ']}' >> $file

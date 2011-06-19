@@ -17,10 +17,11 @@ Lyrics.counter = 0;
 
 Lyrics.prototype.load = function(callback) {
   var song = this;
+  var rela = 0;
 
   $.get(this.url, function(resp) {
     var sentence = [];
-    var lines = resp.split('\r\n');
+    var lines = resp.split(/\r?\n/);
     lines.forEach(function(line) {
       var row = [];
       var words = {};
@@ -30,8 +31,8 @@ Lyrics.prototype.load = function(callback) {
       } else if (line[0] == ':') {
         row = line.slice(2).split(' ');
         word = {
-          start:    row[0],
-          duration: row[1],
+          start:    parseInt(row[0], 10) + (song.relative ? rela : 0),
+          duration: parseInt(row[1], 10),
           note:     parseInt(row[2], 10),
           text:     row.slice(3).join(" ")
         };
@@ -42,6 +43,9 @@ Lyrics.prototype.load = function(callback) {
         }
         sentence.push(word);
       } else if (line[0] == '-') {
+        if (song.relative) {
+          rela += parseInt(line.split(' ')[2], 10);
+        }
         song.lyrics.push(sentence);
         sentence = [];
       } else if (line[0] == 'E') {

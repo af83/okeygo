@@ -46,7 +46,8 @@ Lyrics.prototype.load = function(callback) {
         sentence = [];
       } else if (line[0] == 'E') {
         song.lyrics.push(sentence);
-        song.step = 0.25 * 60 / song.bpm * 1000;
+        var bpm = parseFloat( song.bpm.replace(/,/, '.') );
+        song.step = 0.25 * 60 / bpm * 1000;
         word = sentence[sentence.length - 1];
         song.duration = parseInt(word.start, 10) + parseInt(word.duration, 10);
         sentence = [];

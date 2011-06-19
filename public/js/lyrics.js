@@ -122,7 +122,7 @@ Lyrics.prototype.choose = function(id, duration) {
 };
 
 Lyrics.prototype.stop = function() {
-  $("#lyric").html('');
+  $("#lyric").html('&nbsp;');
   $('#progressbar').attr('style', 'width: 0%');
   this.timeouts.forEach(clearTimeout);
   this.timeouts = [];

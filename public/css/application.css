@@ -6,13 +6,10 @@ body {
   visibility: hidden;
 }
 
-.current {
-  color: red;
-}
+.current { color: red; }
 
-.x-button-label, .x-list-item-body {
-  cursor: pointer;
-}
+.x-button-label, .x-list-item-body { cursor: pointer; }
+.x-list .x-list-item, .x-list .x-list-item:last-child { border: 0; }
 
 #lyric { display: block; width: 100%; margin: 0 auto; padding: 50px 0 60px 0; font: normal 60px/80px Arial; color: #3B3B3B; text-align: center; background: url('../images/notes.png') 0 bottom repeat-x; }
 #lyric .word { color: #2F2E2E; border-bottom: 5px solid #2F2E2E; }

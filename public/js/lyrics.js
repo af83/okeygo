@@ -66,7 +66,6 @@ Lyrics.prototype.display = function() {
   if ( song.gap && !this.waited ) {
     var self = this;
     setTimeout(function() {
-      console.log("waited");
       self.waited = true;
       self.display();
     }, song.gap);

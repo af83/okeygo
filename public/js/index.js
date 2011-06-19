@@ -89,8 +89,8 @@ Ext.setup({
         showAnimation: { type: 'slide', direction: 'left' },
         html: '<div id="lyric">&nbsp;</div>\
         <div id="song"><h2><span class="artist"></span> - <span class="title"></span></h2>\
-        <div class="meter animate"><span id="progressbar" style="width: 50%"><span></span></span></div>\
         <div class="buttons"><button id="replay">Replay</button><button id="acappella">A Cappella</button></div>\
+        <div class="meter animate"><span id="progressbar" style="width: 50%"><span></span></span></div>\
         </div>',
         dockedItems: [
           {

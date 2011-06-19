@@ -116,6 +116,7 @@ Lyrics.prototype.choose = function(id, duration) {
 
 Lyrics.prototype.stop = function() {
   $("#lyric").html('');
+  $('#progressbar').attr('style', 'width: 0%');
   this.timeouts.forEach(clearTimeout);
   this.timeouts = [];
   if (this.intval) {

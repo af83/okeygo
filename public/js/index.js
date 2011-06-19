@@ -90,6 +90,7 @@ Ext.setup({
         html: '<div id="lyric">&nbsp;</div>\
         <div id="song"><h2><span class="artist"></span> - <span class="title"></span></h2>\
         <div class="meter animate"><span id="progressbar" style="width: 50%"><span></span></span></div>\
+        <div class="buttons"><button id="replay">Replay</button><button id="acappella">A Cappella</button></div>\
         </div>',
         dockedItems: [
           {
@@ -101,18 +102,6 @@ Ext.setup({
                 text: 'Back to list',
                 handler: function(button) {
                   songPanel.backToHomePanel();
-                }
-              },
-              {
-                text: 'A Cappella',
-                handler: function(button) {
-                  songPanel.aCappella();
-                }
-              },
-              { ui: 'forward',
-                text: 'Replay',
-                handler: function(button) {
-                  songPanel.backToCountDownPanel();
                 }
               }
             ]
@@ -143,6 +132,8 @@ Ext.setup({
           player.play();
           panel.lyrics.display();
         });
+        $('#acappella').bind('click', songPanel.aCappella);
+        $('#replay').bind('click', songPanel.backToCountDownPanel);
       });
       songPanel.on('hide', function(panel) {
         if (panel.lyrics) panel.lyrics.stop();

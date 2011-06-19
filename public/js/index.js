@@ -34,7 +34,7 @@ Ext.setup({
                 }
               }
             ]
-          },
+          }
         ],
         // Helper to transition back to home panel
         backToHomePanel: function() {
@@ -126,13 +126,13 @@ Ext.setup({
         backToCountDownPanel: function() {
           songPanel.hide();
           countDownPanel.show();
-        },
+        }
       });
       songPanel.hide();
       songPanel.on('show', function(panel) {
         $('body').addClass('song');
         var url = nowPlaying.lyrics;
-        panel.lyrics = new Lyrics(url)
+        panel.lyrics = new Lyrics(url);
         panel.lyrics.load(function() {
           player.play();
           panel.lyrics.display();
@@ -198,7 +198,7 @@ Ext.setup({
             dock : 'top',
             xtype: 'toolbar',
             title: 'Pick a song !'
-          },
+          }
         ],
         items: [ list ]
       });

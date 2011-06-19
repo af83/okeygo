@@ -63,6 +63,7 @@ Ext.setup({
         // Start loading the song...
         player.src = nowPlaying.url;
         player.load();
+        player.volume = 1;
 
         var start_at = countDownPanel.startCountingAt + 1;
 

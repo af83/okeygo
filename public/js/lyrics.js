@@ -58,6 +58,11 @@ Lyrics.prototype.load = function(callback) {
 
 Lyrics.prototype.display = function() {
   var song = this;
+  $('#song .title').html(this.title);
+  $('#song .artist').html(this.artist);
+  $('#progressbar').attr('data-duration', song.duration);
+  if ($('#progressbar')) $('#progressbar').attr('style', 'width:0%');
+
   if ( song.gap && !this.waited ) {
     var self = this;
     setTimeout(function() {
@@ -67,9 +72,7 @@ Lyrics.prototype.display = function() {
     }, song.gap);
     return ;
   }
-  $('#song .title').html(this.title);
-  $('#song .artist').html(this.artist);
-  $('#progressbar').attr('data-duration', song.duration);
+
   var timing = 0;
   song.timer(timing);
   song.intval = setInterval(function() {

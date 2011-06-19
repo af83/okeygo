@@ -66,7 +66,6 @@ Lyrics.prototype.display = function() {
   $('#song .title').html(this.title);
   $('#song .artist').html(this.artist);
   $('#progressbar').attr('data-duration', song.duration);
-  if ($('#progressbar')) $('#progressbar').attr('style', 'width:0%');
 
   if ( song.gap && !this.waited ) {
     var self = this;

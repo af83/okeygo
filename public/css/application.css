@@ -30,7 +30,7 @@ body .x-fullscreen { background: transparent; }
 body.song .x-fullscreen { background: transparent url('../images/sings.png') right bottom no-repeat; }
 
 #countDown { background: url('../images/counter.gif') 0 0 no-repeat; }
-#counter { display: block; width: 100%; height: 640px; margin: 0 auto; font: normal 500px Arial; color: #0095AC; text-align: center; background: url('../images/counter.gif') center -40px no-repeat; }
+#counter { display: block; width: 100%; height: 670px; margin: 0 auto; font: normal 500px Arial; color: #0095AC; text-align: center; background: url('../images/counter.gif') center -40px no-repeat; }
 #counter.count_4 { background-position: center -808px; }
 #counter.count_3 { background-position: center -1576px; }
 #counter.count_2 { background-position: center -2344px; }

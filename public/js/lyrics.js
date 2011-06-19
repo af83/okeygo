@@ -85,7 +85,7 @@ Lyrics.prototype.display = function() {
     prev = timing;
     song.timer(timing);
     var currentPercent = (timing / song.duration) * 100;
-    if ($('#progressbar')) $('#progressbar').attr('style', 'width:' + currentPercent + '%');
+    if ($('#progressbar')) $('#progressbar').css({width: currentPercent + '%'});
     if (timing == song.duration) {
       clearInterval(song.intval);
       song.intval = null;

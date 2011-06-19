@@ -213,6 +213,11 @@ Ext.setup({
            song:   "Smoke on the water",
            lyrics: "songs/Deep_Purple_-_Smoke_On_The_Water/Deep_Purple_-_Smoke_On_The_Water.txt",
            url:    "songs/Deep_Purple_-_Smoke_On_The_Water/Deep_Purple_-_Smoke_On_The_Water.mp3"
+          },
+          {artist: "Rick Astley",
+           song:   "Never Gonna Give You Up",
+           lyrics: "songs/Rick_Astley_-_Never_Gonna_Give_You_Up/Rick_Astley_-_Never_Gonna_Give_You_Up.txt",
+           url: "songs/Rick_Astley_-_Never_Gonna_Give_You_Up/Rick_Astley_-_Never_Gonna_Give_You_Up.mp3"
           }
         ]
       });

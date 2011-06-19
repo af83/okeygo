@@ -109,8 +109,10 @@ Ext.setup({
         ],
         aCappella: function() {
           if (player.volume) {
+            $('#acappella').addClass('disabled');
             player.volume = 0;
           } else {
+            $('#acappella').removeClass('disabled');
             player.volume = 1;
           }
         },

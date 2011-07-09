@@ -92,6 +92,7 @@ Ext.setup({
         showAnimation: { type: 'slide', direction: 'left' },
         html: '<div id="lyric">&nbsp;</div>\
         <div id="song"><h2><span class="artist"></span> - <span class="title"></span></h2>\
+        <div id="cover"><img src="#" alt="{artist} - {song}" /></div>\
         <div class="buttons"><button id="replay">Replay</button><button id="acappella">A Cappella</button></div>\
         <div class="meter animate"><span id="progressbar" style="width: 0%"><span></span></span></div>\
         </div>',
@@ -132,7 +133,7 @@ Ext.setup({
       songPanel.on('show', function(panel) {
         $('body').addClass('song');
         var url = nowPlaying.lyrics;
-        panel.lyrics = new Lyrics(url);
+        panel.lyrics = new Lyrics(url, nowPlaying.img);
         panel.lyrics.load(function() {
           player.play();
           panel.lyrics.display();
@@ -152,8 +153,9 @@ Ext.setup({
        */
 
       // Build a sortable song list show on home
+      var songFields = ['artist', 'song', 'lyrics', 'url', 'img'];
       Ext.regModel('Songs', {
-          fields: ['artist', 'song', 'lyrics', 'url']
+          fields: songFields
       });
       var store = new Ext.data.JsonStore({
           autoLoad: true,
@@ -165,7 +167,7 @@ Ext.setup({
                   root: 'data'
               }
           },
-          fields: ['artist', 'song', 'lyrics', 'url'],
+          fields: songFields,
           model  : 'Songs',
           sorters: 'artist',
           getGroupString : function(record) {
@@ -175,7 +177,7 @@ Ext.setup({
       // Song list Ext widget
       var list = new Ext.List({
           fullscreen: true,
-          itemTpl : '{artist} - {song}',
+          itemTpl : '{artist} - {song} <img src="{img}" alt="{artist} - {song}" />',
           grouped : true,
           indexBar: false,
           store: store

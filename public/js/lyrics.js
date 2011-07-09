@@ -1,5 +1,6 @@
-Lyrics = function(url) {
+Lyrics = function(url, img) {
   this.url      = url;
+  this.img      = img;
   this.init();
 };
 
@@ -65,6 +66,7 @@ Lyrics.prototype.display = function() {
   var song = this;
   $('#song .title').html(this.title);
   $('#song .artist').html(this.artist);
+  $('#cover img').attr('src', this.img).attr('alt', this.title + ' - ' + this.artist);
   $('#progressbar').attr('data-duration', song.duration);
 
   if ( song.gap && !this.waited ) {
@@ -135,10 +137,10 @@ Lyrics.prototype.stop = function() {
   this.init();
 }
 
-/*
+/**
 * Return the CSS class 'low', 'medium' and 'high'
-* @params {Integer} begin
-* @params {Integer} end
+* @param {Integer} begin
+* @param {Integer} end
 * @return {Object} Object of Array
 */
 Lyrics.prototype.range = function(begin, end) {
@@ -161,9 +163,9 @@ Lyrics.prototype.range = function(begin, end) {
   return range;
 };
 
-/*
+/**
 * Return the CSS class 'low', 'medium' and 'high'
-* @params {Integer} note
+* @param {Integer} note
 * @return {String} the CSS class
 */
 Lyrics.prototype.midinote = function(note, min, max) {

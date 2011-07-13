@@ -93,7 +93,8 @@ Ext.setup({
         html: '<div id="lyric">&nbsp;</div>\
         <div id="song"><h2><span class="artist"></span> - <span class="title"></span></h2>\
         <div id="cover"><img src="#" alt="{artist} - {song}" /></div>\
-        <div class="buttons"><button id="replay">Replay</button><button id="acappella">A Cappella</button></div>\
+        <div class="buttons"><button id="replay">Replay</button>\
+        <button id="acappella" class="enabled">A Cappella</button></div>\
         <div class="meter animate"><span id="progressbar" style="width: 0%"><span></span></span></div>\
         </div>',
         dockedItems: [

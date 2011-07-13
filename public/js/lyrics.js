@@ -45,7 +45,7 @@ Lyrics.prototype.load = function(callback) {
         sentence.push(word);
       } else if (line[0] == '-') {
         if (song.relative) {
-          rela += parseInt(line.split(' ')[2], 10);
+          rela += parseInt(line.split(/-?(\d{1,}) (\d{1,})/)[2], 10);
         }
         song.lyrics.push(sentence);
         sentence = [];

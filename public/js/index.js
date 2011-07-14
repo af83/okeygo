@@ -10,7 +10,9 @@ $(function() {
                         <h3><a href="#"><%= key %></a></h3>\
                           <ul>\
                             <% _.each(songsList[key], function(song) { %>\
-                              <li><%= song.artist %> - <%= song.song %></li>\
+                              <li><a href="/sing.html?lyrics=<%= song.lyrics %>&img=<%= song.img %>&url=<%= song.url %>">\
+                                <%= song.artist %> - <%= song.song %></a>\
+                              </li>\
                             <% }); %>\
                           </ul>\
                       <% }); %>\

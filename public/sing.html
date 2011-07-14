@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>OKEYGO, by af83!</title>
+		<link rel="shortcut icon" type="image/png" href="/favicon.png" />
+		<link rel="stylesheet" href="/css/jquery-ui.css" type="text/css">
+		<link rel="stylesheet" href="/css/application.css" type="text/css">
+		<script type="text/javascript" src="/js/jquery.min.js"></script>
+		<script type="text/javascript" src="/js/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="/js/underscore.min.js"></script>
+		<script type="text/javascript" src="/js/lyrics.js"></script>
+		<script type="text/javascript" src="/js/sing.js"></script>
+	</head>
+	<body>
+		<div class="hidden">
+			<audio id="player" src="#" controls></audio>
+		</div>
+		<div id="lyric">&nbsp;</div>
+		<div id="song"><h2><span class="artist"></span> - <span class="title"></span></h2>
+			<div id="cover"><img src="#" alt="" /></div>
+			<div class="buttons">
+				<button id="replay">Replay</button>
+				<button id="acappella" class="enabled">A Cappella</button>
+			</div>
+			<div class="meter animate">
+				<span id="progressbar" style="width: 0%"></span>
+			</div>
+		</div>
+	</body>
+</html>

@@ -3,3 +3,4 @@ Web.pro.user
 rrpmbuild/*
 *.o
 public/songs/*
+public/js/songs.json

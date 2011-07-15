@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-# http://www.sencha.com/learn/Tutorial:PropertyGrid_with_JsonStore
+# aptitude install vim ffmpeg2theora
 
 file="public/js/songs.json"
 song_path='public/songs'
@@ -45,8 +45,15 @@ for txt in $lists; do
     fi
 
     echo '{"artist":"'$ARTIST'", "song":"'$TITLE'"' >> $file
-    url=$(find `dirname $txt` -type f -iname "*.mp3" | sed -e "s|public/||")
-    echo ', "url":"'$url'"' >> $file
+    mp3=$(find `dirname $txt` -type f -iname "*.mp3")
+	mp3_prefix=`basename "$mp3" ".mp3"`
+	ogg="$(dirname $txt)/${mp3_prefix}.ogg"
+	if [ ! -f $ogg ]; then
+        echo " >>> warning: ogg does not exist create it with ffmpeg2theora"
+		ffmpeg2theora $mp3 -o $ogg
+	fi
+	ogg_path=$(echo $ogg | sed -e 's|public/||')
+    echo ', "url":"'$ogg_path'"' >> $file
 
     lyrics=$(echo $txt | sed -e "s|public/||")
     echo ', "lyrics":"'$lyrics'"' >> $file

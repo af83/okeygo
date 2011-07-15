@@ -1,3 +1,12 @@
+/**
+* Done during Intel Hackaton Paris 2011
+* Authors: Bruno Michel <bmichel@menfin.info>,
+*           Laurent Arnoud <laurent@spkdev.net>,
+*           Arnaud Berthomier <oz@cyprio.net>,
+*           Julien Grillot <jgrillot@af83.com>,
+*           shakaman <mbenadon@af83.com>
+*/
+
 Lyrics = function(url, img) {
   this.url      = url;
   this.img      = img;

@@ -1,15 +1,17 @@
 var SongPanel = function() {
+    this.player = new Audio();
+    this.player.load();
+    this.player.src = this.getURLParameter('url');
+    this.player.volume = 1;
 };
 
 SongPanel.prototype.aCappella = function() {
-    if ($('#jplayer').hasClass('muted')) {
-        $('#acappella').removeClass('disabled');
-        $('#jplayer').removeClass("muted");
-        $('#jplayer').jPlayer("unmute");
-    } else {
+    if (this.player.volume) {
         $('#acappella').addClass('disabled');
-        $('#jplayer').addClass("muted");
-        $('#jplayer').jPlayer("mute");
+        this.player.volume = 0;
+    } else {
+        $('#acappella').removeClass('disabled');
+        this.player.volume = 1;
     }
 };
 
@@ -20,27 +22,16 @@ SongPanel.prototype.getURLParameter = function(name) {
 }
 
 $(function() {
+    // TODO countDown
     var songPanel = new SongPanel();
 
-    var nowPlaying = {};
-    nowPlaying.url = songPanel.getURLParameter('url');
-    nowPlaying.lyrics = songPanel.getURLParameter('lyrics');
-    nowPlaying.img = songPanel.getURLParameter('img');
-
     // Start loading the lyrics
-    lyrics = new Lyrics(nowPlaying.lyrics, nowPlaying.img);
+    lyrics = new Lyrics(songPanel.getURLParameter('lyrics'), songPanel.getURLParameter('img'));
     lyrics.load(function() {
-        $('#jplayer').jPlayer({
-            ready: function () {
-                $(this).jPlayer("setMedia", {
-                    mp3: nowPlaying.url
-                }).jPlayer("play");;
-            },
-            swfPath: "/"
-        });
+        songPanel.player.play();
         lyrics.display();
     });
 
-    $('#acappella').bind('click', songPanel.aCappella);
+    $('#acappella').click(songPanel.aCappella.bind(songPanel));
     //$('#replay').bind('click', songPanel.backToCountDownPanel);
 });

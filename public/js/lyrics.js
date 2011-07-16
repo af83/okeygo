@@ -55,10 +55,11 @@ Lyrics.prototype.load = function(callback) {
         if (song.relative) {
           rela += parseInt(line.split(/-?(\d{1,}) (\d{1,})/)[2], 10);
         }
-        song.lyrics.push(sentence);
+        if (sentence.length > 1) song.lyrics.push(sentence);
         sentence = [];
       } else if (line[0] == 'E') {
-        song.lyrics.push(sentence);
+        if (sentence.length > 1) song.lyrics.push(sentence);
+        sentence = song.lyrics[song.lyrics.length - 1];
         var bpm = parseFloat( song.bpm.replace(/,/, '.') );
         song.step = 0.25 * 60 / bpm * 1000;
         word = sentence[sentence.length - 1];

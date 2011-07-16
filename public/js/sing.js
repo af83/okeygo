@@ -16,17 +16,28 @@ SongPanel.prototype.aCappella = function() {
 };
 
 SongPanel.prototype.getURLParameter = function(name) {
-    return decodeURI(
-        (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]
-    );
-}
+    return decodeURI((RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]);
+};
 
 SongPanel.prototype.backToCountDownPanel = function() {
     window.location.reload();
-}
+};
+
+SongPanel.prototype.template = _.template('<div id="lyric">&nbsp;</div>\
+			<div id="song"><h2><span class="artist"></span> - <span class="title"></span></h2>\
+				<div id="cover"><img src="#" alt="" /></div>\
+				<div class="buttons">\
+					<button id="replay">Replay</button>\
+					<button id="acappella" class="enabled">A Cappella</button>\
+				</div>\
+				<div class="meter animate">\
+					<span id="progressbar" style="width: 0%"></span>\
+				</div>\
+			</div>');
 
 $(function() {
     var songPanel = new SongPanel();
+    $(songPanel.template()).appendTo($('.fullscreen'));
 
     // Start loading the lyrics
     lyrics = new Lyrics(songPanel.getURLParameter('lyrics'), songPanel.getURLParameter('img'));

@@ -140,10 +140,10 @@ Lyrics.prototype.stop = function() {
     clearInterval(this.intval);
   }
   this.init();
-}
+};
 
 /**
-* Return the CSS class 'low', 'medium' and 'high'
+* Return a Object of Array for the range of note
 * @param {Integer} begin
 * @param {Integer} end
 * @return {Object} Object of Array
@@ -171,6 +171,8 @@ Lyrics.prototype.range = function(begin, end) {
 /**
 * Return the CSS class 'low', 'medium' and 'high'
 * @param {Integer} note
+* @param {Integer} minimal note for the range
+* @param {Integer} maximal note for the range
 * @return {String} the CSS class
 */
 Lyrics.prototype.midinote = function(note, min, max) {

@@ -13,7 +13,7 @@ or
 
 Generate the list with:
 
-    aptitude install vim ffmpeg2theora
+    aptitude install perl vim ffmpeg2theora imagemagick
     ./scripts/songs_lists.sh
 
 Goto http://localhost:3000/index.html

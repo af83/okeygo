@@ -51,6 +51,6 @@ $(function() {
         lyrics.display();
     });
 
-    $('#acappella').click(songPanel.aCappella.bind(songPanel));
-    $('#replay').click(songPanel.backToCountDownPanel);
+    $('#acappella').live('click', songPanel.aCappella.bind(songPanel));
+    $('#replay').live('click', songPanel.backToCountDownPanel);
 });

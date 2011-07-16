@@ -1,8 +1,21 @@
 #!/usr/bin/env sh
-# aptitude install vim ffmpeg2theora
+# aptitude install perl vim ffmpeg2theora imagemagick
 
 file="public/js/songs.json"
 song_path='public/songs'
+
+escape() {
+  perl -MCGI -e \ 'print CGI->escape(@ARGV), "\n"' "$1"
+}
+
+if which wget > /dev/null 2>/dev/null ; then
+  DOWNLOAD_CMD="wget -O"
+elif which curl > /dev/null 2>/dev/null ; then
+  DOWNLOAD_CMD="curl -o"
+else
+  echo " >>> error: install either wget or curl."
+  exit 1
+fi
 
 # space 2 underscore
 find $song_path -name "* *" | nl -ba | sort -nr | cut -f2 > $song_path/tmp.txt
@@ -59,11 +72,29 @@ for txt in $lists; do
     echo ', "lyrics":"'$lyrics'"' >> $file
 
     img=$(find `dirname $txt` -type f -iname "*.jpg" -exec du -sk {} \; |
-    sort -nr | head -n1 | awk '{print $2}' | sed -e "s|public/||")
-    if [ -z "$img" ]; then
-        echo ', "img":"images/cover_fallback.jpg"' >> $file
+    sort -nr | head -n1 | awk '{print $2}')
+    if [ ! -f "$img" ]; then
+        ESCAPED=`escape "\"$ARTIST\" \"$TITLE\" cover"`
+        GG_IMAGES="http://images.google.com/images?q=$ESCAPED"
+        echo " >>> Please look for the cover here, or press return to skip"
+        echo " >>> $GG_IMAGES"
+        #read COVER_URL
+        if [ -z "$COVER_URL" ] ; then
+            echo " >>> skipping use fallback"
+            echo ', "img":"images/cover_fallback.jpg"' >> $file
+        else
+            echo " >>> downloading image ..."
+            $DOWNLOAD_CMD "$(dirname $txt)/$(echo $ARTIST | tr " " "_")_-_$(echo $TITLE | tr " " "_").jpg" "$COVER_URL"
+        fi
     else
-        echo ', "img":"'$img'"' >> $file
+        img_prefix=`basename "$img" ".jpg"`
+        img_thumb="$(dirname $img)/${img_prefix}_50.jpg"
+        if [ ! -f $img_thumb ]; then
+            echo " >>> thumb does not exist create it with imagemagick"
+            convert $img -gravity center -resize 50x50 $img_thumb
+        fi
+        echo ', "img":"'$(echo $img | sed -e "s|public/||")'"' >> $file
+        echo ', "thumb":"'$(echo $img_thumb | sed -e "s|public/||")'"' >> $file
     fi
     echo '}' >> $file
 done

@@ -21,8 +21,11 @@ SongPanel.prototype.getURLParameter = function(name) {
     );
 }
 
+SongPanel.prototype.backToCountDownPanel = function() {
+    window.location.reload();
+}
+
 $(function() {
-    // TODO countDown
     var songPanel = new SongPanel();
 
     // Start loading the lyrics
@@ -33,5 +36,5 @@ $(function() {
     });
 
     $('#acappella').click(songPanel.aCappella.bind(songPanel));
-    //$('#replay').bind('click', songPanel.backToCountDownPanel);
+    $('#replay').click(songPanel.backToCountDownPanel);
 });

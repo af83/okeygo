@@ -2,9 +2,7 @@
  * Author: shakaman <mbenadon@af83.com>
 */
 
-body {
-  background-color: #7B7B7B;
-}
+body { background: #E3E3E3 url('../images/logo.png') center bottom no-repeat; }
 .hidden {
   display: none;
   visibility: hidden;
@@ -25,9 +23,18 @@ body {
 #lyric .word.current.medium { padding: 0 0 24px 0; }
 #lyric .word.current.low { padding: 0 0 44px 0; }
 
-body { background: #E3E3E3 url('../images/logo.png') center bottom no-repeat; }
-body .x-fullscreen { background: transparent; }
-body.song .x-fullscreen { background: transparent url('../images/sings.png') right bottom no-repeat; }
+.fullscreen {
+    background: url('../images/logo.png') center bottom no-repeat,
+                url('../images/sings.png') right bottom no-repeat;
+    display:block;
+    /*set the div in the top-left corner of the screen*/
+    position:absolute;
+    top:0;
+    left:0;
+    /*set the width and height to 100% of the screen*/
+    width:100%;
+    height:100%;
+}
 
 #countDown { background: url('../images/counter.gif') 0 0 no-repeat; }
 #counter { display: block; width: 100%; height: 670px; margin: 0 auto; font: normal 500px Arial; color: #0095AC; text-align: center; background: url('../images/counter.gif') center -40px no-repeat; }

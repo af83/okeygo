@@ -46,13 +46,13 @@ for txt in $lists; do
 
     echo '{"artist":"'$ARTIST'", "song":"'$TITLE'"' >> $file
     mp3=$(find `dirname $txt` -type f -iname "*.mp3")
-	mp3_prefix=`basename "$mp3" ".mp3"`
-	ogg="$(dirname $txt)/${mp3_prefix}.ogg"
-	if [ ! -f $ogg ]; then
+    mp3_prefix=`basename "$mp3" ".mp3"`
+    ogg="$(dirname $txt)/${mp3_prefix}.ogg"
+    if [ ! -f $ogg ]; then
         echo " >>> warning: ogg does not exist create it with ffmpeg2theora"
-		ffmpeg2theora $mp3 -o $ogg
-	fi
-	ogg_path=$(echo $ogg | sed -e 's|public/||')
+        ffmpeg2theora $mp3 -o $ogg
+    fi
+    ogg_path=$(echo $ogg | sed -e 's|public/||')
     echo ', "url":"'$ogg_path'"' >> $file
 
     lyrics=$(echo $txt | sed -e "s|public/||")

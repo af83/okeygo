@@ -24,24 +24,29 @@ SongPanel.prototype.backToCountDownPanel = function() {
 };
 
 SongPanel.prototype.template = _.template('<div id="lyric">&nbsp;</div>\
-			<div id="song"><h2><span class="artist"></span> - <span class="title"></span></h2>\
-				<div id="cover"><img src="#" alt="" /></div>\
-				<div class="buttons">\
-					<button id="replay">Replay</button>\
-					<button id="acappella" class="enabled">A Cappella</button>\
-				</div>\
-				<div class="meter animate">\
-					<span id="progressbar" style="width: 0%"></span>\
-				</div>\
-			</div>');
+            <div id="song"><h2><span class="artist"><%= artist %></span> - <span class="title"><%= title %></span></h2>\
+                <div id="cover"><img src="<%= img %>" alt="<%= alt %>" /></div>\
+                <div class="buttons">\
+                    <button id="replay">Replay</button>\
+                    <button id="acappella" class="enabled">A Cappella</button>\
+                </div>\
+                <div class="meter animate">\
+                    <span id="progressbar" style="width: 0%"></span>\
+                </div>\
+            </div>');
 
 $(function() {
     var songPanel = new SongPanel();
-    $(songPanel.template()).appendTo($('.fullscreen'));
-
     // Start loading the lyrics
-    lyrics = new Lyrics(songPanel.getURLParameter('lyrics'), songPanel.getURLParameter('img'));
+    lyrics = new Lyrics(songPanel.getURLParameter('lyrics'));
+
     lyrics.load(function() {
+        $(songPanel.template({
+            img: songPanel.getURLParameter('img'),
+            title: lyrics.title,
+            artist: lyrics.artist,
+            alt: lyrics.title + ' - ' + lyrics.artist
+        })).appendTo($('.fullscreen'));
         songPanel.player.play();
         lyrics.display();
     });

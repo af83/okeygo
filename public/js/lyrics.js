@@ -7,9 +7,8 @@
 *           shakaman <mbenadon@af83.com>
 */
 
-Lyrics = function(url, img) {
+Lyrics = function(url) {
   this.url      = url;
-  this.img      = img;
   this.init();
 };
 
@@ -73,10 +72,6 @@ Lyrics.prototype.load = function(callback) {
 
 Lyrics.prototype.display = function() {
   var song = this;
-  $('#song .title').html(this.title);
-  $('#song .artist').html(this.artist);
-  $('#cover img').attr('src', this.img).attr('alt', this.title + ' - ' + this.artist);
-  $('#progressbar').attr('data-duration', song.duration);
 
   if ( song.gap && !this.waited ) {
     var self = this;

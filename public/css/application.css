@@ -3,6 +3,7 @@
 */
 
 body { background: #E3E3E3 url('../images/logo.png') center bottom no-repeat; }
+
 .hidden {
   display: none;
   visibility: hidden;
@@ -114,4 +115,16 @@ body { background: #E3E3E3 url('../images/logo.png') center bottom no-repeat; }
     background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #7C9BC0), color-stop(2%, #416086), color-stop(100%, #293E56)), -moz-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #7C9BC0), color-stop(2%, #416086), color-stop(100%, #293E56));
     background-image: linear-gradient(#7C9BC0,#416086 2%,#293E56);
     border-color: black;
+}
+
+#loading {
+    display:none; position:fixed; left:0; top:0; z-index: 1001;
+    background-color: #fff;
+    border: 2px solid black;
+    filter:alpha(opacity=50);
+    opacity: 0.5;
+    -moz-opacity:0.5;
+}
+#loading p {
+    text-align: center;
 }

@@ -57,7 +57,7 @@ for txt in $lists; do
         echo -n ',' >> $file
     fi
 
-    echo '{"artist":"'$ARTIST'", "song":"'$TITLE'"' >> $file
+    echo '{"artist":"'$ARTIST'", "title":"'$TITLE'"' >> $file
     mp3=$(find `dirname $txt` -type f -iname "*.mp3")
     mp3_prefix=`basename "$mp3" ".mp3"`
     ogg="$(dirname $txt)/${mp3_prefix}.ogg"

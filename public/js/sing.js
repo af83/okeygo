@@ -2,6 +2,7 @@ var SongPanel = function() {
     this.player = new Audio();
     this.player.load();
     this.player.src = this.getURLParameter('url');
+    this.player.preload = 'auto';
     this.player.volume = 1;
 };
 
@@ -36,14 +37,17 @@ SongPanel.prototype.template = _.template('<div id="lyric">&nbsp;</div>\
             </div>');
 
 $(function() {
+    var songPanel = new SongPanel();
+
+    // 4,3,2,1 Sing!
     $('#counter').countDown({
         startNumber: 4,
         startFontSize: '500px',
         endFontSize: '500px',
-        callBack: function(me) {
-            $(me).text('Sing!').css('color','#090');
-            $(me).hide();
-            var songPanel = new SongPanel();
+        callBack: function(counter) {
+            $(counter).text('Sing!').css('color','#090');
+            $(counter).hide();
+
             // Start loading the lyrics
             lyrics = new Lyrics(songPanel.getURLParameter('lyrics'));
 

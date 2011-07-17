@@ -48,14 +48,14 @@ $(function() {
             lyrics = new Lyrics(songPanel.getURLParameter('lyrics'));
 
             lyrics.load(function() {
+                songPanel.player.play();
+                lyrics.display();
                 $(songPanel.template({
                     img: songPanel.getURLParameter('img'),
                     title: lyrics.title,
                     artist: lyrics.artist,
                     alt: lyrics.title + ' - ' + lyrics.artist
                 })).appendTo($('.fullscreen'));
-                songPanel.player.play();
-                lyrics.display();
             });
 
             $('#acappella').live('click', songPanel.aCappella.bind(songPanel));

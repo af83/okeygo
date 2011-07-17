@@ -13,7 +13,7 @@ DESCRIPTION="Generate songs.json for okeygo"
 
 SONGS_PATH=public/songs
 JSON=public/js/songs.json
-COVER_FALLBACK=images/cover_fallback.jpg
+COVER_FALLBACK=images/cover_fallback.png
 
 usage() {
     echo ${DESCRIPTION}
@@ -43,10 +43,10 @@ Add_covers_to_json() {
     COVER="${1}"
     JSON="${2}"
     IMG_PREFIX=$(basename "${COVER}" ".jpg")
-    IMG_THUMB="$(dirname ${COVER})/${IMG_PREFIX}_50.jpg"
+    IMG_THUMB="$(dirname ${COVER})/${IMG_PREFIX}_100.jpg"
     if [ ! -f ${IMG_THUMB} ]; then
         echo " >>> thumb does not exist create it with imagemagick"
-        convert ${COVER} -gravity center -resize 50x50 ${IMG_THUMB}
+        convert ${COVER} -gravity center -resize 100x100 ${IMG_THUMB}
     fi
     echo ', "img":"'$(Remove_public "${COVER}")'"' >> ${JSON}
     echo ', "thumb":"'$(Remove_public ${IMG_THUMB})'"' >> ${JSON}

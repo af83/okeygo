@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 ## Generate songs.json for okeygo
-## aptitude install perl vim ffmpeg2theora imagemagick
+## aptitude install perl vim ffmpeg2theora imagemagick optipng
 ##
 ## This script comes with ABSOLUTELY NO WARRANTY; for details see COPYING.
 ## This is free software, and you are welcome to redistribute it
@@ -43,10 +43,11 @@ Add_covers_to_json() {
     COVER="${1}"
     JSON="${2}"
     IMG_PREFIX=$(basename "${COVER}" ".jpg")
-    IMG_THUMB="$(dirname ${COVER})/${IMG_PREFIX}_100.jpg"
+    IMG_THUMB="$(dirname ${COVER})/${IMG_PREFIX}_100.png"
     if [ ! -f ${IMG_THUMB} ]; then
         echo " >>> thumb does not exist create it with imagemagick"
         convert ${COVER} -gravity center -resize 100x100 ${IMG_THUMB}
+        optipng -o5 ${IMG_THUMB}
     fi
     echo ', "img":"'$(Remove_public "${COVER}")'"' >> ${JSON}
     echo ', "thumb":"'$(Remove_public ${IMG_THUMB})'"' >> ${JSON}

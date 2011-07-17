@@ -23,6 +23,7 @@ jQuery.fn.countDown = function(settings,to) {
 
         //set the countdown to the starting number
         $(this).text(to).css('fontSize',settings.startFontSize);
+        $(this).addClass('countDown'+to);
 
         //loopage
         $(this).animate({

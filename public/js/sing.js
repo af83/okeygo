@@ -36,21 +36,30 @@ SongPanel.prototype.template = _.template('<div id="lyric">&nbsp;</div>\
             </div>');
 
 $(function() {
-    var songPanel = new SongPanel();
-    // Start loading the lyrics
-    lyrics = new Lyrics(songPanel.getURLParameter('lyrics'));
+    $('#counter').countDown({
+        startNumber: 4,
+        startFontSize: '500px',
+        endFontSize: '500px',
+        callBack: function(me) {
+            $(me).text('Sing!').css('color','#090');
+            $(me).hide();
+            var songPanel = new SongPanel();
+            // Start loading the lyrics
+            lyrics = new Lyrics(songPanel.getURLParameter('lyrics'));
 
-    lyrics.load(function() {
-        $(songPanel.template({
-            img: songPanel.getURLParameter('img'),
-            title: lyrics.title,
-            artist: lyrics.artist,
-            alt: lyrics.title + ' - ' + lyrics.artist
-        })).appendTo($('.fullscreen'));
-        songPanel.player.play();
-        lyrics.display();
+            lyrics.load(function() {
+                $(songPanel.template({
+                    img: songPanel.getURLParameter('img'),
+                    title: lyrics.title,
+                    artist: lyrics.artist,
+                    alt: lyrics.title + ' - ' + lyrics.artist
+                })).appendTo($('.fullscreen'));
+                songPanel.player.play();
+                lyrics.display();
+            });
+
+            $('#acappella').live('click', songPanel.aCappella.bind(songPanel));
+            $('#replay').live('click', songPanel.backToCountDownPanel);
+        }
     });
-
-    $('#acappella').live('click', songPanel.aCappella.bind(songPanel));
-    $('#replay').live('click', songPanel.backToCountDownPanel);
 });

@@ -21,9 +21,10 @@ $(document).ready(function () {
                         <h3><a href="#"><%= key %></a></h3>\
                           <ul>\
                             <% _.each(songsList[key], function(song) { %>\
-                              <li class="item"><a href="/sing.html?lyrics=<%= song.lyrics %>&img=<%= song.thumb %>&url=<%= song.url %>">\
-                                <%= song.artist %> - <%= song.title %></a>\
-                                <img src="<%= song.thumb || song.img %>" alt="<%= song.artist %> - <%= song.title %>" />\
+                              <li class="item">\
+                                <a href="/sing.html?lyrics=<%= song.lyrics %>&img=<%= song.thumb %>&url=<%= song.url %>">\
+                                  <%= song.artist %> - <%= song.title %> <img src="<%= song.thumb || song.img %>" alt="<%= song.artist %> - <%= song.title %>" />\
+                                </a>\
                               </li>\
                             <% }); %>\
                           </ul>\

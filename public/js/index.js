@@ -180,7 +180,7 @@ Ext.setup({
           fullscreen: true,
           itemTpl : '{artist} - {song} <img src="{img}" alt="{artist} - {song}" />',
           grouped : true,
-          indexBar: false,
+          indexBar: true,
           store: store
       });
       list.on('selectionchange', function() {

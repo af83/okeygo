@@ -2,3 +2,4 @@ Web
 Web.pro.user
 rrpmbuild/*
 *.o
+public/songs/*

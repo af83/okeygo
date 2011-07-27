@@ -18,8 +18,8 @@ $(document).ready(function () {
 
         var list = '<div id="accordion">\
                       <% _.each(_.keys(songsList).sort(), function(key) { %>\
-                        <h3><a href="#"><%= key %></a></h3>\
-                          <ul>\
+                        <h3><a href="#<%= key %>" name="<%= key %>"><%= key %></a></h3>\
+                          <ul data-name="<%= key %>">\
                             <% _.each(songsList[key], function(song) { %>\
                               <li class="item">\
                                 <a href="/sing.html?lyrics=<%= song.lyrics %>&img=<%= song.thumb %>&url=<%= song.url %>">\
@@ -34,6 +34,12 @@ $(document).ready(function () {
 
         $(result).appendTo('body');
 
-        $( "#accordion" ).accordion({collapsible: true, autoHeight: false});
+    }).complete(function() {
+        $(window).sausage({
+            page: 'ul',
+            content: function (i, $page) {
+                return '<div class="sausage-span">' + $page.data('name') + '</div>';
+            }
+        });
     });
 });

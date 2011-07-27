@@ -23,7 +23,7 @@ $(document).ready(function () {
                             <% _.each(songsList[key], function(song) { %>\
                               <li class="item">\
                                 <a href="/sing.html?lyrics=<%= song.lyrics %>&img=<%= song.thumb %>&url=<%= song.url %>">\
-                                  <%= song.artist %> - <%= song.title %> <img src="<%= song.thumb || song.img %>" alt="<%= song.artist %> - <%= song.title %>" />\
+                                  <%= song.artist %> - <%= song.title %> <img class="cover" src="<%= song.thumb || song.img %>" alt="<%= song.artist %> - <%= song.title %>" />\
                                 </a>\
                               </li>\
                             <% }); %>\

@@ -1,8 +1,10 @@
 /*
  * Original author: shakaman <mbenadon@af83.com>
-*/
+ */
 
-body { background: #E3E3E3 url('../images/logo.png') center bottom no-repeat; }
+body {
+    background: #E3E3E3 url('../images/logo.png') center bottom no-repeat;
+}
 
 .item a {
     padding-left: 20px;
@@ -22,7 +24,16 @@ body { background: #E3E3E3 url('../images/logo.png') center bottom no-repeat; }
     -webkit-transform: scale(2); -moz-transform: scale(2);
 }
 
-#lyric { display: block; width: 100%; margin: 0 auto; padding: 50px 0 60px 0; font: normal 60px/80px Arial; color: #3B3B3B; text-align: center; background: url('../images/notes.png') 0 bottom repeat-x; }
+#lyric {
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+    padding: 50px 0 60px 0;
+    font: normal 60px/80px Arial;
+    color: #3B3B3B;
+    text-align: center;
+    background: url('../images/notes.png') 0 bottom repeat-x;
+}
 #lyric .word { color: #2F2E2E; border-bottom: 5px solid #2F2E2E; }
 #lyric .word.top { padding: 0 0 9px 0; }
 #lyric .word.medium { padding: 0 0 27px 0; }
@@ -34,7 +45,7 @@ body { background: #E3E3E3 url('../images/logo.png') center bottom no-repeat; }
 
 .fullscreen {
     background: url('../images/logo.png') center bottom no-repeat,
-                url('../images/sings.png') right bottom no-repeat;
+    url('../images/sings.png') right bottom no-repeat;
     display:block;
     /*set the div in the top-left corner of the screen*/
     position:absolute;
@@ -46,27 +57,106 @@ body { background: #E3E3E3 url('../images/logo.png') center bottom no-repeat; }
 }
 
 #countDown { background: url('../images/counter.gif') 0 0 no-repeat; }
-#counter { display: block; width: 100%; height: 670px; margin: 0 auto; font: normal 500px Arial; color: #0095AC; text-align: center; background: url('../images/counter.gif') center -40px no-repeat; }
+#counter {
+    display: block;
+    width: 100%;
+    height: 670px;
+    margin: 0 auto;
+    font: normal 500px Arial;
+    color: #0095AC;
+    text-align: center;
+    background: url('../images/counter.gif') center -40px no-repeat;
+}
 #counter.countDown4 { background-position: center -808px; }
 #counter.countDown3 { background-position: center -1576px; }
 #counter.countDown2 { background-position: center -2344px; }
 #counter.countDown1 { background-position: center -3112px; }
 
-#song { width: 400px; margin: 50px auto 0 auto; padding: 10px 25px; border: 1px solid #2F2E2E; border-radius: 5px; background: #FFF; box-shadow: 3px 3px 3px rgba(47,46,46,0.5); -webkit-box-shadow: 3px 3px 3px rgba(47,46,46,0.5); }
+#song {
+    width: 400px;
+    margin: 50px auto 0 auto;
+    padding: 10px 25px;
+    border: 1px solid #2F2E2E;
+    border-radius: 5px;
+    background: #FFF;
+    box-shadow: 3px 3px 3px rgba(47,46,46,0.5);
+    -webkit-box-shadow: 3px 3px 3px rgba(47,46,46,0.5);
+    -moz-box-shadow: 3px 3px 3px rgba(47,46,46,0.5);
+}
 #song h2 { text-align: center; }
 #song h2 .artist { font: normal 20px Arial; color: #2F2E2E; }
 #song h2 .title { font: bold 20px Arial; color: #50A2B3; }
 
-#cover img { width: 100px; height: 100px; text-align: center; display: block; margin-left: auto; margin-right: auto; box-shadow: 2px 2px 2px rgba(47,46,46,0.5); -webkit-box-shadow: 2px 2px 2px rgba(47,46,46,0.5); }
+#cover img {
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 2px 2px 2px rgba(47,46,46,0.5);
+    -webkit-box-shadow: 2px 2px 2px rgba(47,46,46,0.5);
+    -moz-box-shadow: 2px 2px 2px rgba(47,46,46,0.5);
+}
 
 #progressbar { margin: -10px 0px 0px 1px; width: 100%; height: 10px; }
 .buttons { margin: 30px 0 0 0; text-align: center; }
-.buttons #replay { display: block-inline; width: 30px; height: 30px; margin: 0 20px 0 0; border: none; text-indent: -3000px; background: url('../images/replay.gif') 0 0 no-repeat; }
-.buttons #acappella { display: block-inline; width: 30px; height: 30px; margin: 0 0 0 20px; border: none; text-indent: -3000px; background: url('../images/acappella_off.gif') 0 0 no-repeat; }
-.buttons #acappella.disabled { background: url('../images/acappella_on.gif') 0 0 no-repeat; }
+.buttons #replay {
+    display: block-inline;
+    width: 30px;
+    height: 30px;
+    margin: 0 20px 0 0;
+    border: none;
+    text-indent: -3000px;
+    background: url('../images/replay.gif') 0 0 no-repeat;
+}
+.buttons #acappella {
+    display: block-inline;
+    width: 30px;
+    height: 30px;
+    margin: 0 0 0 20px;
+    border: none;
+    text-indent: -3000px;
+    background: url('../images/acappella_off.gif') 0 0 no-repeat;
+}
+.buttons #acappella.disabled {
+    background: url('../images/acappella_on.gif') 0 0 no-repeat;
+}
 
-.meter { height: 10px; position: relative; margin: 30px 0 20px 0; background: #555; -moz-border-radius: 25px; -webkit-border-radius: 25px; border-radius: 25px; padding: 0; -webkit-box-shadow: inset 0 -1px 1px rgba(255,255,255,0.3); -moz-box-shadow: inset 0 -1px 1px rgba(255,255,255,0.3); box-shadow: inset 0 -1px 1px rgba(255,255,255,0.3); }
-.meter > span { display: block; height: 100%; -webkit-border-top-right-radius: 8px; -webkit-border-bottom-right-radius: 8px;  border-top-right-radius: 8px; border-bottom-right-radius: 8px; -webkit-border-top-left-radius: 20px; -webkit-border-bottom-left-radius: 20px; border-top-left-radius: 20px; border-bottom-left-radius: 20px; background-color: rgb(0,149,172); background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, rgb(0,149,172)), color-stop(1, rgb(0,216,249))); -webkit-box-shadow:  inset 0 2px 9px  rgba(255,255,255,0.3), inset 0 -2px 6px rgba(0,0,0,0.4); box-shadow:  inset 0 2px 9px  rgba(255,255,255,0.3), inset 0 -2px 6px rgba(0,0,0,0.4); position: relative; overflow: hidden; }
+.meter {
+    height: 10px;
+    position: relative;
+    margin: 30px 0 20px 0;
+    background: #555;
+    -moz-border-radius: 25px;
+    -webkit-border-radius: 25px;
+    border-radius: 25px;
+    padding: 0;
+    -webkit-box-shadow: inset 0 -1px 1px rgba(255,255,255,0.3);
+    -moz-box-shadow: inset 0 -1px 1px rgba(255,255,255,0.3);
+    box-shadow: inset 0 -1px 1px rgba(255,255,255,0.3);
+}
+.meter > span {
+    display: block;
+    height: 100%;
+    -webkit-border-top-right-radius: 8px;
+    -webkit-border-bottom-right-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    -webkit-border-top-left-radius: 20px;
+    -webkit-border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    background-color: rgb(0,149,172);
+    background-image: -webkit-gradient(linear, left bottom, left top,
+    color-stop(0, rgb(0,149,172)), color-stop(1, rgb(0,216,249)));
+    background-image: -moz-gradient(linear, left bottom, left top,
+    color-stop(0, rgb(0,149,172)), color-stop(1, rgb(0,216,249)));
+    -webkit-box-shadow:  inset 0 2px 9px  rgba(255,255,255,0.3), inset 0 -2px 6px rgba(0,0,0,0.4);
+    box-shadow:  inset 0 2px 9px  rgba(255,255,255,0.3), inset 0 -2px 6px rgba(0,0,0,0.4);
+    position: relative;
+    overflow: hidden;
+}
 
 .button {
     color: #fff;
@@ -95,13 +185,21 @@ body { background: #E3E3E3 url('../images/logo.png') center bottom no-repeat; }
 }
 .blue {
     background-color: #24364C;
-    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #5A81AF), color-stop(2%, #304864), color-stop(100%, #192533)), -moz-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #5A81AF), color-stop(2%, #304864), color-stop(100%, #192533));
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%,
+    color-stop(0%, #5A81AF), color-stop(2%, #304864),
+    color-stop(100%, #192533)),
+    -moz-gradient(linear, 50% 0%, 50% 100%,
+    color-stop(0%, #5A81AF), color-stop(2%, #304864),
+    color-stop(100%, #192533));
     background-image: linear-gradient(#5A81AF,#304864 2%,#192533);
 }
 
 .toolbar {
     background-color: #354F6E;
-    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #7C9BC0), color-stop(2%, #416086), color-stop(100%, #293E56)), -moz-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #7C9BC0), color-stop(2%, #416086), color-stop(100%, #293E56));
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%,
+    color-stop(0%, #7C9BC0), color-stop(2%, #416086),
+    color-stop(100%, #293E56)), -moz-gradient(linear, 50% 0%, 50% 100%,
+    color-stop(0%, #7C9BC0), color-stop(2%, #416086), color-stop(100%, #293E56));
     background-image: linear-gradient(#7C9BC0,#416086 2%,#293E56);
     border-color: black;
 }
@@ -111,9 +209,10 @@ body { background: #E3E3E3 url('../images/logo.png') center bottom no-repeat; }
     background-color: #fff;
     border: 2px solid black;
     padding: 10px;
-    filter:alpha(opacity=50);
+    filter: alpha(opacity=50);
     opacity: 0.5;
-    -moz-opacity:0.5;
+    -moz-opacity: 0.5;
+    -webkit-opacity: 0.5;
 }
 #loading p {
     text-align: center;

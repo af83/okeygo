@@ -73,6 +73,7 @@ Lyrics.prototype.load = function(callback) {
 
 Lyrics.prototype.display = function() {
   var song = this;
+  $('#progressbar').progressbar();
 
   if ( song.gap && !this.waited ) {
     var self = this;
@@ -92,7 +93,7 @@ Lyrics.prototype.display = function() {
     prev = timing;
     song.timer(timing);
     var currentPercent = (timing / song.duration) * 100;
-    if ($('#progressbar')) $('#progressbar').css({width: currentPercent + '%'});
+    $('#progressbar').progressbar('value', currentPercent);
     if (timing == song.duration) {
       clearInterval(song.intval);
       song.intval = null;
@@ -133,7 +134,6 @@ Lyrics.prototype.choose = function(id, duration) {
 
 Lyrics.prototype.stop = function() {
   $("#lyric").html('&nbsp;');
-  $('#progressbar').attr('style', 'width: 0%');
   this.timeouts.forEach(clearTimeout);
   this.timeouts = [];
   if (this.intval) {

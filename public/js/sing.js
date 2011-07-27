@@ -31,9 +31,7 @@ SongPanel.prototype.template = _.template('<div id="lyric">&nbsp;</div>\
                     <button id="replay">Replay</button>\
                     <button id="acappella" class="enabled">A Cappella</button>\
                 </div>\
-                <div class="meter animate">\
-                    <span id="progressbar" style="width: 0%"></span>\
-                </div>\
+                <div id="progressbar"></div>\
             </div>');
 
 $(function() {
@@ -53,13 +51,13 @@ $(function() {
 
             lyrics.load(function() {
                 songPanel.player.play();
-                lyrics.display();
                 $(songPanel.template({
                     img: songPanel.getURLParameter('img'),
                     title: lyrics.title,
                     artist: lyrics.artist,
                     alt: lyrics.title + ' - ' + lyrics.artist
                 })).appendTo($('.fullscreen'));
+                lyrics.display();
             });
 
             $('#acappella').live('click', songPanel.aCappella.bind(songPanel));

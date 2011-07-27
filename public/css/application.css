@@ -99,7 +99,7 @@ body {
     -moz-box-shadow: 2px 2px 2px rgba(47,46,46,0.5);
 }
 
-#progressbar { margin: -10px 0px 0px 1px; width: 100%; height: 10px; }
+#progressbar { margin: 20px 0px 0px 1px; width: 100%; height: 10px; }
 .buttons { margin: 30px 0 0 0; text-align: center; }
 .buttons #replay {
     display: block-inline;
@@ -121,41 +121,6 @@ body {
 }
 .buttons #acappella.disabled {
     background: url('../images/acappella_on.gif') 0 0 no-repeat;
-}
-
-.meter {
-    height: 10px;
-    position: relative;
-    margin: 30px 0 20px 0;
-    background: #555;
-    -moz-border-radius: 25px;
-    -webkit-border-radius: 25px;
-    border-radius: 25px;
-    padding: 0;
-    -webkit-box-shadow: inset 0 -1px 1px rgba(255,255,255,0.3);
-    -moz-box-shadow: inset 0 -1px 1px rgba(255,255,255,0.3);
-    box-shadow: inset 0 -1px 1px rgba(255,255,255,0.3);
-}
-.meter > span {
-    display: block;
-    height: 100%;
-    -webkit-border-top-right-radius: 8px;
-    -webkit-border-bottom-right-radius: 8px;
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
-    -webkit-border-top-left-radius: 20px;
-    -webkit-border-bottom-left-radius: 20px;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-    background-color: rgb(0,149,172);
-    background-image: -webkit-gradient(linear, left bottom, left top,
-    color-stop(0, rgb(0,149,172)), color-stop(1, rgb(0,216,249)));
-    background-image: -moz-gradient(linear, left bottom, left top,
-    color-stop(0, rgb(0,149,172)), color-stop(1, rgb(0,216,249)));
-    -webkit-box-shadow:  inset 0 2px 9px  rgba(255,255,255,0.3), inset 0 -2px 6px rgba(0,0,0,0.4);
-    box-shadow:  inset 0 2px 9px  rgba(255,255,255,0.3), inset 0 -2px 6px rgba(0,0,0,0.4);
-    position: relative;
-    overflow: hidden;
 }
 
 .button {

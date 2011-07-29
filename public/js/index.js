@@ -1,12 +1,11 @@
 $(document).ready(function () {
-    $('#loading').hide()
-    .ajaxStart(function() {
+
+    $('#loading').hide().ajaxStart(function() {
         $(this).css("position", "absolute");
         $(this).css("top", ($(window).height() - $(this).height())/ 2 + $(window).scrollTop() + "px");
         $(this).css("left", ($(window).width() - $(this).width()) / 2 + $(window).scrollLeft() + "px");
         $(this).show();
-    })
-    .ajaxStop(function() {
+    }).ajaxStop(function() {
         $(this).hide();
     });
 
@@ -16,13 +15,13 @@ $(document).ready(function () {
 
         songsList = _.groupBy(songs, function(s) { return s.artist[0]; });
 
-        var list = '<div id="accordion">\
+        var list = '<div id="songs">\
                       <% _.each(_.keys(songsList).sort(), function(key) { %>\
                         <h3><a href="#<%= key %>" name="<%= key %>"><%= key %></a></h3>\
                           <ul data-name="<%= key %>">\
                             <% _.each(songsList[key], function(song) { %>\
                               <li class="item">\
-                                <a href="/sing.html?lyrics=<%= song.lyrics %>&img=<%= song.thumb %>&url=<%= song.url %>">\
+                                <a href="/sing.html?lyrics=<%= escape(song.lyrics) %>&img=<%= escape(song.thumb) %>&url=<%= escape(song.url) %>">\
                                   <%= song.artist %> - <%= song.title %> <img class="cover" src="<%= song.thumb || song.img %>" alt="<%= song.artist %> - <%= song.title %>" />\
                                 </a>\
                               </li>\

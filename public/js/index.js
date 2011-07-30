@@ -15,23 +15,22 @@ $(document).ready(function () {
 
         songsList = _.groupBy(songs, function(s) { return s.artist[0]; });
 
-        var list = '<div id="songs">\
-                      <% _.each(_.keys(songsList).sort(), function(key) { %>\
-                        <h3><a href="#<%= key %>" name="<%= key %>"><%= key %></a></h3>\
-                          <ul data-name="<%= key %>">\
-                            <% _.each(songsList[key], function(song) { %>\
-                              <li class="item">\
-                                <a href="/sing.html?lyrics=<%= escape(song.lyrics) %>&img=<%= escape(song.thumb) %>&url=<%= escape(song.url) %>">\
-                                  <%= song.artist %> - <%= song.title %> <img class="cover" src="<%= song.thumb || song.img %>" alt="<%= song.artist %> - <%= song.title %>" />\
-                                </a>\
-                              </li>\
-                            <% }); %>\
-                          </ul>\
-                      <% }); %>\
-                    </div>';
+        var list = '<% _.each(_.keys(songsList).sort(), function(key) { %>\
+                      <h3><a href="#<%= key %>" name="<%= key %>"><%= key %></a></h3>\
+                        <ul data-name="<%= key %>">\
+                          <% _.each(songsList[key], function(song) { %>\
+                            <li class="item">\
+                              <a href="/sing.html?<%= $.param(song) %>"\
+                                class="play"\>\
+                                <%= song.artist %> - <%= song.title %> <img class="cover" src="<%= song.thumb || song.img %>" alt="<%= song.artist %> - <%= song.title %>" />\
+                              </a>\
+                            </li>\
+                          <% }); %>\
+                        </ul>\
+                    <% }); %>';
         var result = _.template(list, {songsList: songsList});
 
-        $(result).appendTo('body');
+        $(result).appendTo('#songs');
 
     }).complete(function() {
         $(window).sausage({
@@ -41,4 +40,5 @@ $(document).ready(function () {
             }
         });
     });
+
 });

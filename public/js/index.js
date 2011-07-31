@@ -50,19 +50,17 @@ $(document).ready(function () {
 
     $( "img.cover" ).live('mouseenter', function(e) {
         var target = $(this).closest('a');
+        $('#dialog').html('&nbsp;');
         $('#dialog').dialog( "option", "title", target.text());
         // Start loading the lyrics
         lyrics = new Lyrics(target.data('song').lyrics);
         lyrics.load(function() {
-            var sentence = "";
+            $('#dialog').append(target.find('img').clone());
             _.each(lyrics.lyrics.slice(0, 5), function(l) {
-                sentence = sentence.concat('<p>');
-                sentence = sentence.concat(_.reduce(l, function(memo, obj) {
+                $('#dialog').append('<p>' + _.reduce(l, function(memo, obj) {
                     return memo + obj.text;
-                }, ""));
-                sentence = sentence.concat('</p>');
+                }, "") + '</p>');
             });
-            $('#dialog').html(sentence);
             $( "#dialog" ).dialog( "open" );
         });
         return false;

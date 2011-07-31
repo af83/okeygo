@@ -9,7 +9,7 @@ var SongPanel = function(data) {
     } else {
         this.player.src = this.getURLParameter('url');
         this.lyrics = this.getURLParameter('lyrics');
-        this.img = this.getURLParameter('img');
+        this.img = this.getURLParameter('thumb');
         this.title = decodeURIComponent(this.getURLParameter('title')).replace(/\+/g, ' ');
         this.artist = decodeURIComponent(this.getURLParameter('artist')).replace(/\+/g, ' ');
     }

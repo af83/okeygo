@@ -50,7 +50,7 @@ $(document).ready(function () {
 
     $( "img.cover" ).live('mouseenter', function(e) {
         var target = $(this).closest('a');
-        $('#dialog').html('&nbsp;');
+        $('#dialog').empty();
         $('#dialog').dialog( "option", "title", target.text());
         // Start loading the lyrics
         lyrics = new Lyrics(target.data('song').lyrics);

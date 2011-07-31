@@ -102,7 +102,7 @@ Lyrics.prototype.timer = function(timing) {
   var song = this;
   var lyrics = song.lyrics;
   if (timing < lyrics[0][0].start) return ;
-  $("#lyric").html('&nbsp;');
+  $("#lyric").empty();
   var sentence = lyrics.shift();
   sentence.forEach(function(word) {
     var id = 'word-' + Lyrics.counter++;
@@ -130,7 +130,7 @@ Lyrics.prototype.choose = function(id, duration) {
 };
 
 Lyrics.prototype.stop = function() {
-  $("#lyric").html('&nbsp;');
+  $("#lyric").empty();
   this.timeouts.forEach(clearTimeout);
   this.timeouts = [];
   this.init();

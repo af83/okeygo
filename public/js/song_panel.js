@@ -44,7 +44,7 @@ SongPanel.prototype.html = '<div class="fullscreen">\
 			<div class="countDown"><p id="counter">4</p></div>\
 		</div>';
 
-SongPanel.prototype.template = _.template('<div id="lyric">&nbsp;</div>\
+SongPanel.prototype.template = _.template('<div id="lyric"></div>\
             <div id="song"><h2><span class="artist"><%= artist %></span> - <span class="title"><%= title %></span></h2>\
                 <div id="cover"><img src="<%= img %>" alt="<%= alt %>" /></div>\
                 <div class="buttons">\

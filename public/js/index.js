@@ -16,7 +16,7 @@ $(document).ready(function () {
         songsList = _.groupBy(songs, function(s) { return s.artist[0]; });
 
         var list = '<% _.each(_.keys(songsList).sort(), function(key) { %>\
-                      <h3><a href="#<%= key %>" name="<%= key %>"><%= key %></a></h3>\
+                      <h3><a id="<%= key %>" href="#<%= key %>" name="<%= key %>"><%= key %></a></h3>\
                         <ul data-name="<%= key %>">\
                           <% _.each(_.sortBy(songsList[key], function(i){ return i.artist }), function(song) { %>\
                             <li class="item">\
@@ -32,6 +32,16 @@ $(document).ready(function () {
         var result = _.template(list, {songsList: songsList});
 
         $(result).appendTo('#songs');
+
+        var hash = location.hash.trim();
+        if (!_.isEmpty(hash)) {
+            // Window location hash not supported in webkit
+            if ($.browser.webkit){
+                window.location.href = hash;
+            } else {
+                window.location.hash = hash;
+            }
+        }
 
     }).complete(function() {
         $(window).sausage({

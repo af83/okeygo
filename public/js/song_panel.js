@@ -37,12 +37,12 @@ SongPanel.prototype.backToCountDownPanel = function() {
     window.location.reload();
 };
 
-SongPanel.prototype.html = '<div class="fullscreen">\
+SongPanel.prototype.html = _.template('<div class="fullscreen">\
 			<div class="toolbar">\
-				<a href="/" class="button back blue">« Back</a>\
+				<a href="/#<%= key %>" class="button back blue">« Back</a>\
 			</div>\
-			<div class="countDown"><p id="counter">4</p></div>\
-		</div>';
+			<div class="countDown"><p id="counter"><%= startNumber %></p></div>\
+		</div>');
 
 SongPanel.prototype.template = _.template('<div id="lyric"></div>\
             <div id="song"><h2><span class="artist"><%= artist %></span> - <span class="title"><%= title %></span></h2>\
@@ -55,12 +55,14 @@ SongPanel.prototype.template = _.template('<div id="lyric"></div>\
             </div>');
 
 SongPanel.prototype.sing = function() {
-    $('#sing').html(this.html);
+    var startNumber = 4;
+    var key = this.artist[0].toLocaleUpperCase();
+    $('#sing').html(this.html({startNumber: startNumber, key: key}));
     
     var self = this;
     // 4,3,2,1 Sing!
     $('#counter').countDown({
-        startNumber: 4,
+        startNumber: startNumber,
         startFontSize: '500px',
         endFontSize: '500px',
         callBack: function(counter) {

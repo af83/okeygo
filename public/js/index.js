@@ -18,7 +18,7 @@ $(document).ready(function () {
         var list = '<% _.each(_.keys(songsList).sort(), function(key) { %>\
                       <h3><a href="#<%= key %>" name="<%= key %>"><%= key %></a></h3>\
                         <ul data-name="<%= key %>">\
-                          <% _.each(songsList[key], function(song) { %>\
+                          <% _.each(_.sortBy(songsList[key], function(i){ return i.artist }), function(song) { %>\
                             <li class="item">\
                               <a href="/sing.html?<%= $.param(song) %>"\
                                 data-song=\'{"lyrics":"<%= escape(song.lyrics) %>"}\'\

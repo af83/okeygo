@@ -33,7 +33,7 @@ $(document).ready(function () {
 
         $(result).appendTo('#songs');
 
-        var hash = location.hash.trim();
+        var hash = $.trim(location.hash);
         if (!_.isEmpty(hash)) {
             // Window location hash not supported in webkit
             if ($.browser.webkit){

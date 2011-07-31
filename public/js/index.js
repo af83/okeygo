@@ -21,6 +21,7 @@ $(document).ready(function () {
                           <% _.each(songsList[key], function(song) { %>\
                             <li class="item">\
                               <a href="/sing.html?<%= $.param(song) %>"\
+                                data-song=\'{"lyrics":"<%= escape(song.lyrics) %>"}\'\
                                 class="play"\>\
                                 <%= song.artist %> - <%= song.title %> <img class="cover" src="<%= song.thumb || song.img %>" alt="<%= song.artist %> - <%= song.title %>" />\
                               </a>\
@@ -41,4 +42,32 @@ $(document).ready(function () {
         });
     });
 
+    $( "#dialog" ).dialog({
+        autoOpen: false,
+        width: 450,
+        position:[($(window).width() - 550), 'center']
+    });
+
+    $( "img.cover" ).live('mouseenter', function(e) {
+        var target = $(this).closest('a');
+        $('#dialog').dialog( "option", "title", target.text());
+        // Start loading the lyrics
+        lyrics = new Lyrics(target.data('song').lyrics);
+        lyrics.load(function() {
+            var sentence = "";
+            _.each(lyrics.lyrics.slice(0, 5), function(l) {
+                sentence = sentence.concat('<p>');
+                sentence = sentence.concat(_.reduce(l, function(memo, obj) {
+                    return memo + obj.text;
+                }, ""));
+                sentence = sentence.concat('</p>');
+            });
+            $('#dialog').html(sentence);
+            $( "#dialog" ).dialog( "open" );
+        });
+        return false;
+    }).live('mouseleave', function() {
+        $( "#dialog" ).dialog( "close" );
+        return false;
+    });
 });

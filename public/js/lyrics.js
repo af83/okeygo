@@ -13,7 +13,6 @@ Lyrics = function(url) {
 };
 
 Lyrics.prototype.init = function() {
-  this.intval   = null;
   this.timeouts = [];
   this.lyrics   = [];
   this.note_min = -1;
@@ -86,25 +85,24 @@ Lyrics.prototype.display = function() {
   var zero = new Date();
   var timing, prev;
   song.timer(0);
-  song.intval = setInterval(function() {
-    timing = Math.round((new Date() - zero) / song.step);
-    if (prev == timing) return ;
-    prev = timing;
-    song.timer(timing);
-    var currentPercent = (timing / song.duration) * 100;
-    $('#progressbar').progressbar('value', currentPercent);
-    if (timing == song.duration) {
-      clearInterval(song.intval);
-      song.intval = null;
-    }
-  }, 10);
+
+  // infinite loop, avoid setInterval
+  // recursive setTimeout pattern
+  (function loop() {
+      timing = Math.round((new Date() - zero) / song.step);
+      prev = timing;
+      song.timer(timing);
+      var currentPercent = (timing / song.duration) * 100;
+      $('#progressbar').progressbar('value', currentPercent);
+      setTimeout(loop, 10);
+  })();
 };
 
 Lyrics.prototype.timer = function(timing) {
   var song = this;
   var lyrics = song.lyrics;
-  if (!lyrics.length || timing != lyrics[0][0].start) return ;
-  $("#lyric").html('');
+  if (timing < lyrics[0][0].start) return ;
+  $("#lyric").html('&nbsp;');
   var sentence = lyrics.shift();
   sentence.forEach(function(word) {
     var id = 'word-' + Lyrics.counter++;
@@ -135,9 +133,6 @@ Lyrics.prototype.stop = function() {
   $("#lyric").html('&nbsp;');
   this.timeouts.forEach(clearTimeout);
   this.timeouts = [];
-  if (this.intval) {
-    clearInterval(this.intval);
-  }
   this.init();
 };
 

@@ -76,10 +76,9 @@ Lyrics.prototype.display = function() {
   $('#progressbar').progressbar();
 
   if ( song.gap && !this.waited ) {
-    var self = this;
     setTimeout(function() {
-      self.waited = true;
-      self.display();
+      song.waited = true;
+      song.display();
     }, song.gap);
     return ;
   }

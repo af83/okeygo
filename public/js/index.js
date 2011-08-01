@@ -21,7 +21,7 @@ $(document).ready(function () {
                           <% _.each(_.sortBy(songsList[key], function(i){ return i.artist }), function(song) { %>\
                             <li class="item">\
                               <a href="/sing.html?<%= $.param(song) %>"\
-                                data-song=\'{"lyrics":"<%= escape(song.lyrics) %>"}\'\
+                                data-song=\'{"lyrics":"<%= encodeURIComponent(song.lyrics) %>"}\'\
                                 class="play"\>\
                                 <%= song.artist %> - <%= song.title %> <img class="cover" src="<%= song.thumb || song.img %>" alt="<%= song.artist %> - <%= song.title %>" />\
                               </a>\

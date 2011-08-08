@@ -39,7 +39,7 @@ SongPanel.prototype.backToCountDownPanel = function() {
 
 SongPanel.prototype.html = _.template('<div class="fullscreen">\
 			<div class="toolbar">\
-				<a href="/#<%= key %>" class="button back blue">« Back</a>\
+				<a href="/" class="button back blue">« Back</a>\
 			</div>\
 			<div class="countDown"><p id="counter"><%= startNumber %></p></div>\
 		</div>');

@@ -22,8 +22,24 @@
 		<script type="text/javascript" src="/js/jquery.sausage.js"></script>
 		<script type="text/javascript" src="/js/jquery.countdown.js"></script>
 		<script type="text/javascript" src="/js/underscore.min.js"></script>
+		<script type="text/javascript" src="/js/backbone.min.js"></script>
 		<script type="text/javascript" src="/js/lyrics.js"></script>
 		<script type="text/javascript" src="/js/song_panel.js"></script>
 		<script type="text/javascript" src="/js/index.js"></script>
+		<script id="song-template" type="text/template">
+			<li class="item">
+			<a href="#" class="play">
+				<%= artist %> - <%= title %>
+				<img class="cover" src="<%= thumb || img %>" alt="<%= artist %> - <%= title %>" />
+			</a>
+			</li>
+		</script>
+		<script id="songs-template" type="text/template">
+			<% _.each(keys, function(key) { %>
+				<h3><a href="#<%= key %>" name="<%= key %>"><%= key %></a></h3>
+				<ul id="<%= key %>" data-key-name="<%= key %>">
+				</ul>
+			<% }); %>
+		</script>
 	</body>
 </html>

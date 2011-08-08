@@ -88,7 +88,7 @@ rm ${SONGS_PATH}/tmp.txt
 LYRICS_LISTS=$(find ${SONGS_PATH} -iname "*.txt" -type f)
 JSON_FIRSTLINE=""
 
-echo '{"data":[' > ${JSON}
+echo '[' > ${JSON}
 for TXT in ${LYRICS_LISTS}; do
     # convert \r\n --> \n
     if $(file "${TXT}" | grep CRLF) ; then
@@ -159,6 +159,6 @@ for TXT in ${LYRICS_LISTS}; do
     fi
     echo '}' >> ${JSON}
 done
-echo ']}' >> ${JSON}
+echo ']' >> ${JSON}
 
 echo "Done."

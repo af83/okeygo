@@ -55,6 +55,7 @@ $(document).ready(function () {
             e.preventDefault();
             $('#songs').hide();
             $(window).sausage("block");
+            this.closePreview();
             var songPanel = new SongPanel(this.model.toJSON());
             songPanel.sing();
         },
@@ -76,7 +77,7 @@ $(document).ready(function () {
             });
         },
 
-        closePreview: function(e) {
+        closePreview: function() {
             $( "#dialog" ).dialog( "close" );
         }
     });
